@@ -1,9 +1,19 @@
 package com.smi.tms.model;
 
-public class User {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="USER")
+public class User extends BaseModel{
 	
+	@Column(name="user_name")
 	private String userName;
+	
+	@Column(name="password")
 	private String password;
+	
 	public String getUserName() {
 		return userName;
 	}
