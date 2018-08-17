@@ -7,9 +7,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 	
-	@RequestMapping("/login")
+	@RequestMapping("/employeelist")
 	public ModelAndView showForm() {
-		return new ModelAndView("login");
+		return new ModelAndView("employeelist");
 	}
 
 }

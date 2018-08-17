@@ -5,7 +5,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>HRM Login</title>
+    <title>TMS Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -29,41 +29,43 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 	
-	<style type="text/css">
-      /* Override some defaults */
-      html, body {
-        background-color: #829AA8;
-      }
-      body {
-        padding-top: 40px; 
-      }
-      .container {
-        width: 300px;
-      }
+<style type="text/css">
+		/* Override some defaults */
+html, body {
+	background-color: #829AE5;  /* #829AA8 */
+}
 
-      /* The white background content wrapper */
-      .container > .content {
-        background-color: #fff;
-        padding: 20px;
-        margin: 0 -20px; 
-        -webkit-border-radius: 10px 10px 10px 10px;
-           -moz-border-radius: 10px 10px 10px 10px;
-                border-radius: 10px 10px 10px 10px;
-        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-                box-shadow: 0 1px 2px rgba(0,0,0,.15);
-      }
+body {
+	padding-top: 40px;
+}
 
-	  .login-form {
-		margin-left: 65px;
-	  }
+.container {
+	width: 300px;
+}
+
+/* The white background content wrapper */
+.container>.content {
+	background-color: #fff;
+	padding: 20px;
+	margin: 0 -20px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	border-radius: 10px 10px 10px 10px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+}
+
+.login-form {
+	margin-left: 65px;
+}
+
+legend {
+	margin-right: -50px;
+	font-weight: bold;
+	color: #404040;
+}
 	
-	  legend {
-		margin-right: -50px;
-		font-weight: bold;
-	  	color: #404040;
-	  }
-
     </style>
 	
 	
@@ -157,7 +159,7 @@
 			<div class="row">
 				<div class="login-form">
 					<h2><img src="https://hrms.mookambikainfo.com/app/data/logo.png"/></h2>
-										<form id="loginForm" action="login.php" method="POST">
+						<form id="loginForm" action="employeelist" method="POST">
 						<fieldset>
 							<div class="clearfix">
 								<div class="input-prepend">
@@ -171,7 +173,8 @@
 								  	<input class="span2" type="password" id="password" name="password" placeholder="Password">
 								</div>
 							</div>
-																					<button class="btn" style="margin-top: 5px;" type="button" onclick="submitLogin();return false;">Sign in&nbsp;&nbsp;<span class="icon-arrow-right"></span></button>
+							<button class="btn" style="margin-top: 5px;" type="button" onclick="submitLogin();return false;">Sign in&nbsp;&nbsp;
+							<span class="icon-arrow-right"></span></button>
 						</fieldset>
 						<div class="clearfix">
 							<a href="" onclick="showForgotPassword();return false;" style="float:left;margin-top: 10px;">Forgot password</a>
