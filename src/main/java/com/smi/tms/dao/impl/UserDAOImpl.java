@@ -22,7 +22,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public List<Task> getTasksById(int empId) {
 		return (List<Task>) HibernateUtil.getHibernateTemplate().find(
-				"FROM Task WHERE = assigned_to?", empId);
+				"FROM Task WHERE assigned_to = ?", empId);
 	}
 
 }

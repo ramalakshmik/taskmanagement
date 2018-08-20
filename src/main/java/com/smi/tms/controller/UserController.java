@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.smi.tms.model.Role;
 import com.smi.tms.model.Task;
 import com.smi.tms.model.User;
 import com.smi.tms.service.UserService;
@@ -25,7 +26,8 @@ public class UserController {
 	public ModelAndView showForm(HttpServletRequest request,
 			HttpServletResponse response) {
 		User user = (User) request.getSession().getAttribute("user");
-		String role = user.getRole().get(0).getRole();
+		Role role2 = user.getRole().get(0);
+		String role = role2.getRole();
 		if (role!= null && role.equalsIgnoreCase("admin")) {
 			List<User> userList = userService.getUsersById(user.getId());
 			request.getSession().setAttribute("userList", userList);
