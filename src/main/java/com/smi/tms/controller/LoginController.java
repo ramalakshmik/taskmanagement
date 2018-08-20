@@ -21,10 +21,10 @@ public class LoginController {
 
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public ModelAndView showForm(HttpServletRequest request,
-			HttpServletResponse response,@ModelAttribute("user")User user) {
-		String userName = "srilekha.vasanth@gmail.com"; //request.getParameter("userName");
-		String password = "analyst@123"; //request.getParameter("password");
-		user = loginService.getUser(user.getUserName(), user.getPassword());
+			HttpServletResponse response) {
+		String userName = request.getParameter("username");
+		String password =request.getParameter("password");
+		User user = loginService.getUser(userName,password);
 		request.getSession().setAttribute("user", user);
 		// if (user.getRole().get(0).getRole().equalsIgnoreCase("admin")) {
 		return new ModelAndView("redirect:employeelist");

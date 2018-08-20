@@ -15,24 +15,10 @@
 	<context:component-scan base-package="com.smi.tms.model"></context:component-scan>
 	<mvc:annotation-driven/>
 	
-	
-	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/pages/" />
 		<property name="suffix" value=".jsp" />
-	</bean> -->
-	
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>
-	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-		<property name="definitions">
-			<list>
-				<value>/WEB-INF/layouts/layouts.xml</value>
-				<!-- <value>/WEB-INF/layouts/views.xml</value> -->
-			</list>
-		</property>
 	</bean>
-	
-	<mvc:resources mapping="/resources/**" location="/resources/"/> 
-	<mvc:annotation-driven />
 	
 	<context:property-placeholder location="classpath:application.properties" />
 	
@@ -77,5 +63,6 @@
 
 	<bean class="com.smi.tms.dao.impl.LoginDAOImpl" />
 	<bean class="com.smi.tms.dao.impl.UserDAOImpl" />
+	<bean class="com.smi.tms.dao.impl.TaskDAOImpl" />
 	
 </beans>
