@@ -7,15 +7,15 @@
 <title>Header</title>
 </head>
 <body>
-		main layout
-		<div class="container" style="border: #C1C1C1 solid 1px; border-radius:10px;">
-			<!-- Header -->
-			<tiles:insertAttribute name="header" />
-			<!-- Body Page -->
-			<div class="span-19 last">
-				<tiles:insertAttribute name="body" />
-			</div>
-			<!-- Footer Page -->
+		<div class="header">
+			  <tiles:insertAttribute name="header" />
+		</div>
+
+		<div style="padding-left:20px">
+			<tiles:insertAttribute name="body" />
+		</div>
+		
+		<div>
 			<tiles:insertAttribute name="footer" />
 		</div>
 
