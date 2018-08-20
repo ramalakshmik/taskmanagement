@@ -34,6 +34,15 @@
             </props>
         </property>       
     </bean>
+    
+    <bean id="hibernateTemplate"
+		class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="hTemplate" class="com.smi.tms.util.HibernateUtil">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
 
 
 	
