@@ -1,20 +1,31 @@
 package com.smi.tms.model;
 
-public class Address {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Address")
+public class Address extends BaseModel{
 	
-	private long id;
+	@Column(name="address_type")
 	private String addressType;
+	
+	@Column(name="address_line1")
 	private String addressLineone;
+	
+	@Column(name="address_line2")
 	private String addressLineTwo;
+	
+	@Column(name="city")
 	private String city;
+	
+	@Column(name="state")
 	private String state;
+	
+	@Column(name="zipcode")
 	private long zipcode;
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
 	public String getAddressType() {
 		return addressType;
 	}

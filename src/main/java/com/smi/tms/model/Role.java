@@ -1,6 +1,7 @@
 package com.smi.tms.model;
 
-public class Role {
+public class Role extends BaseModel{
+	
 	private String role;
 
 	public String getRole() {
