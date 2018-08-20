@@ -4,5 +4,6 @@ import com.smi.tms.model.Task;
 
 public interface TaskService {
 
-	void insertTask(Task task);
+	boolean insertTask(Task task);
+	void changeStatus(Integer id);
 }

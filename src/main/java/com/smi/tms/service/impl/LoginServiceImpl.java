@@ -23,4 +23,9 @@ public class LoginServiceImpl implements LoginService {
 		return loginDAO.getUser(userName, password);
 	}
 
+	@Override
+	public String encodePassword(String passwordToHash) {
+		return loginDAO.encodePassword(passwordToHash);
+	}
+
 }
