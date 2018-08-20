@@ -1,12 +1,44 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Header</title>
-</head>
-<body>
-<h3>This is header page</h3>
-</body>
-</html>
+<style>
+	.header {
+  overflow: hidden;
+  padding:5px;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 5px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.header a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.header-right {
+  float: right;
+}
+
+.logoutLblPos{
+
+   position:fixed;
+   right:10px;
+   top:5px;
+}
+
+</style>
+
+ <div class="header" style="display: flex;flex-direction: row;justify-content: space-between;">
+    <img class="" style="float:left;width:25%" alt="Logo" src="resources/images/logo.png">
+  	<h5>Task Management System</h5>
+  	<div>Logout</div>
+</div> 
+
