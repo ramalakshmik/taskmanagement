@@ -21,12 +21,15 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	}
 
 	public List<Task> getTaskListByEmpId(Integer id) {
-		HibernateTemplate template = HibernateUtil.getHibernateTemplate();
-		Employee employee = template.get(Employee.class, id);
-		if(employee!= null && employee.getTaskList() != null && employee.getTaskList().size()!=0) {
-			return employee.getTaskList();
-		}
-		return null;
+		/*
+		 * HibernateTemplate template = HibernateUtil.getHibernateTemplate();
+		 * Employee employee = template.get(Employee.class, id); if(employee!=
+		 * null && employee.getTaskList() != null &&
+		 * employee.getTaskList().size()!=0) { return employee.getTaskList(); }
+		 * return null;
+		 */
+		return (List<Task>) HibernateUtil.getHibernateTemplate().find(
+				"FROM Task WHERE assigned_to=?", id);
 	}
 
 

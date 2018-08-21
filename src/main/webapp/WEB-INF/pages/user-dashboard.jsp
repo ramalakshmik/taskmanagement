@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -138,6 +139,27 @@ height:1%;
 <br/>
 <br/>
 <table style="width:80%" align="center" >
+    <tr>
+      <th scope="col">Task Name</th>
+      <th scope="col">Task Description</th>
+      <th scope="col">Assigned By</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">Planned End Date</th>
+	  <th colspan="3">Actions</th>
+    </tr>
+  <c:forEach var="task" items="${taskList}">
+  <tr>
+    <td>${task.title}</td>
+    <td>${task.taskDescription}</td>
+    <td>${task.assignBy.firstName}</td>
+    <td>${task.startDate}</td>
+    <td>${task.endDate}</td>
+	  <td><button type="button" class="btn btn-link">Edit</button></td>
+	  <td><button type="button" class="btn btn-link">View</button></td>
+  </tr>
+  </c:forEach>
+</table>
+<!-- <table style="width:80%" align="center" >
   <thead>
     <tr>
       <th scope="col">Task Name</th>
@@ -183,7 +205,7 @@ height:1%;
 	  <td><button type="button" class="btn btn-link">View</button></td>
     </tr>
 </tbody>
-</table>
+</table> -->
 </div>
 </body>
 </html>

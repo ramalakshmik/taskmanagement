@@ -66,8 +66,8 @@ public class Task extends BaseModel {
 		this.employee = employee;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "assignBy")
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "assigned_by")
 	private Employee assignBy;
 
 	public String getTitle() {
