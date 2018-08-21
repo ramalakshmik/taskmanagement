@@ -11,13 +11,13 @@ import com.smi.tms.util.HibernateUtil;
 
 public class EmployeeDAOImpl implements EmployeeDAO{
 
-	@Override
+	@SuppressWarnings("unchecked")
 	public List<Employee> getEmployeeListByReportingToId(Integer reportingToId) {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Employee>) HibernateUtil.getHibernateTemplate().find(
+				"FROM Employee WHERE reporting_to=?", reportingToId);
+
 	}
 
-	@Override
 	public List<Task> getTaskListByEmpId(Integer id) {
 		HibernateTemplate template = HibernateUtil.getHibernateTemplate();
 		Employee employee = template.get(Employee.class, id);

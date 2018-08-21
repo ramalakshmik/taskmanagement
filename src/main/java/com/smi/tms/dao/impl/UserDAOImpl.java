@@ -14,7 +14,7 @@ public class UserDAOImpl implements UserDAO {
 	public List<User> getUsersById(int empId) {
 
 		return (List<User>) HibernateUtil.getHibernateTemplate().find(
-				"FROM User WHERE reportingTo=?", empId);
+				"FROM User WHERE reporting_to=?", empId);
 
 	}
 

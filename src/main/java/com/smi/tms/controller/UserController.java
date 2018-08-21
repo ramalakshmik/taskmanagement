@@ -22,7 +22,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	@RequestMapping(value = "/employeelist", method = RequestMethod.GET)
+	@RequestMapping(value = "/employeelist1", method = RequestMethod.GET)
 	public ModelAndView showForm(HttpServletRequest request,
 			HttpServletResponse response) {
 		User user = (User) request.getSession().getAttribute("user");
@@ -31,11 +31,11 @@ public class UserController {
 		if (role!= null && role.equalsIgnoreCase("admin")) {
 			List<User> userList = userService.getUsersById(user.getId());
 			request.getSession().setAttribute("userList", userList);
-			return new ModelAndView("adminview");
+			return new ModelAndView("adminView");
 		}else{
 			List<Task> taskList = userService.getTasksById(user.getId());
 			request.getSession().setAttribute("taskList", taskList);
-			return new ModelAndView("employeeview");
+			return new ModelAndView("userView");
 		}
 
 	}
