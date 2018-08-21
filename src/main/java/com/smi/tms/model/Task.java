@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "task")
 public class Task extends BaseModel {
 
-	@Id
+	/*@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
@@ -28,7 +28,7 @@ public class Task extends BaseModel {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
+	}*/
 
 	@Column(name = "title")
 	private String title;
@@ -54,7 +54,7 @@ public class Task extends BaseModel {
 	@Column(name = "reason")
 	private String reason;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "assigned_to")
 	private Employee employee;
 
@@ -66,8 +66,9 @@ public class Task extends BaseModel {
 		this.employee = employee;
 	}
 
-	@Column(name = "assigned_by")
-	private String assignBy;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "assignBy")
+	private Employee assignBy;
 
 	public String getTitle() {
 		return title;
@@ -133,12 +134,14 @@ public class Task extends BaseModel {
 		this.reason = reason;
 	}
 
-	public String getAssignBy() {
+	public Employee getAssignBy() {
 		return assignBy;
 	}
 
-	public void setAssignBy(String assignBy) {
+	public void setAssignBy(Employee assignBy) {
 		this.assignBy = assignBy;
 	}
+
+	
 
 }

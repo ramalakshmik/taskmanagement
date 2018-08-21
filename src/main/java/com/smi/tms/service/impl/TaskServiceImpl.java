@@ -23,4 +23,9 @@ public class TaskServiceImpl implements TaskService {
 		taskDAO.changeStatus(id);
 	}
 
+	@Override
+	public Task getTaskById(Integer taskId) {
+		return taskDAO.getTaskById(taskId);
+	}
+
 }

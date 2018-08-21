@@ -1,5 +1,8 @@
 package com.smi.tms.dao.impl;
 
+import java.util.List;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+
 import org.hibernate.Session;
 
 import com.smi.tms.dao.TaskDAO;
@@ -36,6 +39,14 @@ public class TaskDAOImpl implements TaskDAO {
 			session.createQuery("DELETE FROM Task t WHERE t.id = :id").setParameter("id", id)
 					.executeUpdate();
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Task getTaskById(Integer taskId) {
+		HibernateTemplate template = HibernateUtil.getHibernateTemplate();
+		Task task =  template.get(Task.class,taskId);
+		return task;
 	}
 
 }

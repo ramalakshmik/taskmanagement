@@ -19,6 +19,11 @@
 	<definition name="userView" extends="DefaultTemplate">
 	    <put-attribute name="body" value="/WEB-INF/pages/user-dashboard.jsp" />
 	</definition>
+	
+	<!-- Task -->
+	<definition name="taskAddEdit" extends="DefaultTemplate">
+	    <put-attribute name="body" value="/WEB-INF/pages/taskadd.jsp.jsp" />
+	</definition>
 
 
 </tiles-definitions>
