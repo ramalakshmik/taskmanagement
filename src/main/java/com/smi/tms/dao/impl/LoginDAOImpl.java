@@ -4,10 +4,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+
 import com.smi.tms.dao.LoginDAO;
 import com.smi.tms.model.User;
 import com.smi.tms.util.HibernateUtil;
 
+@Controller
 public class LoginDAOImpl implements LoginDAO {
 
 	public User getActiveUser(String userName) {

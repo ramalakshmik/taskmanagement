@@ -3,12 +3,14 @@ package com.smi.tms.dao.impl;
 import java.util.List;
 
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Component;
 
 import com.smi.tms.dao.EmployeeDAO;
 import com.smi.tms.model.Employee;
 import com.smi.tms.model.Task;
 import com.smi.tms.util.HibernateUtil;
 
+@Component
 public class EmployeeDAOImpl implements EmployeeDAO{
 
 	@Override

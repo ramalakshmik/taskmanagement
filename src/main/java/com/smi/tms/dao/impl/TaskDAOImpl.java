@@ -1,14 +1,14 @@
 package com.smi.tms.dao.impl;
 
-import java.util.List;
-import org.springframework.orm.hibernate5.HibernateTemplate;
-
 import org.hibernate.Session;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Component;
 
 import com.smi.tms.dao.TaskDAO;
 import com.smi.tms.model.Task;
 import com.smi.tms.util.HibernateUtil;
 
+@Component
 public class TaskDAOImpl implements TaskDAO {
 
 	@Override

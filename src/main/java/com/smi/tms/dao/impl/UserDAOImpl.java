@@ -2,11 +2,14 @@ package com.smi.tms.dao.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.smi.tms.dao.UserDAO;
 import com.smi.tms.model.Task;
 import com.smi.tms.model.User;
 import com.smi.tms.util.HibernateUtil;
 
+@Component
 public class UserDAOImpl implements UserDAO {
 
 	@SuppressWarnings("unchecked")

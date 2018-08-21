@@ -18,6 +18,7 @@ import com.smi.tms.service.EmployeeService;
 import com.smi.tms.service.TaskService;
 
 @Controller
+@RequestMapping(value="/task")
 public class TaskController {
 	
 	@Autowired
@@ -26,23 +27,22 @@ public class TaskController {
 	@Autowired
 	EmployeeService employeeService;
 	
-	@RequestMapping(name="/task/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public ModelAndView getTask(HttpServletRequest request,
 			HttpServletResponse response,@PathVariable("id") Integer taskId) {
 			Task task = taskService.getTaskById(taskId);
-			ModelAndView modelView = new ModelAndView("");
+			ModelAndView modelView = new ModelAndView("taskAddEdit"); //change this 
 			modelView.addObject("task",task);
 				return modelView;
 	}
 	
-	@RequestMapping(name="/task", method = RequestMethod.GET)
+	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public ModelAndView getTaskByEmpId(HttpServletRequest request,
-			HttpServletResponse response,@RequestParam Integer empId) {
-			List<Task> taskList = employeeService.getTaskListByEmpId(empId);
-			ModelAndView modelView = new ModelAndView("");
-			modelView.addObject("userView",taskList);
-				return modelView;
+			HttpServletResponse response,@RequestParam(value="empId",required=true) Integer empId) {
+		List<Task> taskList = employeeService.getTaskListByEmpId(empId);
+		ModelAndView modelView = new ModelAndView("userView");
+		modelView.addObject("taskList",taskList);
+		return modelView;
 	}
-	
 
 }
