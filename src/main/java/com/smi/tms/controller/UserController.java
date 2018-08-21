@@ -28,7 +28,7 @@ public class UserController {
 		User user = (User) request.getSession().getAttribute("user");
 		Role role2 = user.getRole().get(0);
 		String role = role2.getRole();
-		if (role!= null && role.equalsIgnoreCase("admin")) {
+		if (role!= null && role.equalsIgnoreCase("Project Manager")) {
 			List<User> userList = userService.getUsersById(user.getId());
 			request.getSession().setAttribute("userList", userList);
 			return new ModelAndView("adminView");

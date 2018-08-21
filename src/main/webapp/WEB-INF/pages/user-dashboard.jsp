@@ -154,58 +154,55 @@ height:1%;
     <td>${task.assignBy.firstName}</td>
     <td>${task.startDate}</td>
     <td>${task.endDate}</td>
-	  <td><button type="button" class="btn btn-link">Edit</button></td>
+	  <td><!-- <button type="button" class="btn btn-link">Edit</button> -->
+	  	<a data-toggle="modal" data-target="#updateTaskModal" href="assign">Assign</a>
+	  </td>
 	  <td><button type="button" class="btn btn-link">View</button></td>
   </tr>
   </c:forEach>
 </table>
-<!-- <table style="width:80%" align="center" >
-  <thead>
-    <tr>
-      <th scope="col">Task Name</th>
-      <th scope="col">Task Description</th>
-      <th scope="col">Assigned By</th>
-      <th scope="col">Start Date</th>
-      <th scope="col">Planned End Date</th>
-	  <th colspan="3">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <strong>Project Structure</strong>
-      </td>
-      <td>Frame template for HospitalMgmt</td>
-      <td>Vasavi</td>
-      <td>13-Aug-2018</td>
-      <td>16-Aug-2018</td>
-	  <td><button type="button" class="btn btn-link">Edit</button></td>
-	  <td><button type="button" class="btn btn-link">View</button></td>
-    </tr>
-    <tr>
-      <td>
-        <strong>DB Design</strong>
-      </td>
-      <td>Create DB design for TMS</td>
-      <td>Sarvesh</td>
-      <td>10-Aug-2018</td>
-      <td>12-Aug-2018</td>
-	  <td><button type="button" class="btn btn-link">Edit</button></td>
-	  <td><button type="button" class="btn btn-link">View</button></td>
-    </tr>
-    <tr>
-     <td>
-        <strong>Project Structure</strong>
-      </td>
-      <td>Unit Test Class creation using JUnit</td>
-      <td>Sarvesh</td>
-      <td>01-Aug-2018</td>
-      <td>01-Aug-2018</td>
-	  <td><button type="button" class="btn btn-link">Edit</button></td>
-	  <td><button type="button" class="btn btn-link">View</button></td>
-    </tr>
-</tbody>
-</table> -->
+
+<div class="modal" id="updateTaskModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-sm">
+<div class="modal-content-w">
+<div class="modal-body-w">
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <form action="">
+        <div class="row">
+          <div class="col-50">
+          <h1 align="center" style="color:#0c5978"><strong>Add Task</strong></h1>
+           <form:form method="POST" action="">
+			<table>
+				<%-- <tr>
+					<td></td>
+					<td><form:hidden path="id" /></td>
+				</tr> --%>
+				<tr>
+					<td>Name :</td>
+					<td><form:input type="text" path="title" /></td>
+				</tr>
+				<tr>
+					<td>Salary :</td>
+					<td><form:input type="text" path="taskDescription" width="50%"/></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" width="100%" class="btn-save" value="Edit Save" />
+					<input type="submit" value="Cancel" class="btn-cancel"></td>
+				</tr>
+			</table>
+		</form:form>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>

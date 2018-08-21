@@ -30,14 +30,19 @@ public class EmployeeController {
 		Role role2 = user.getRole().get(0);
 		String role = role2.getRole();
 		int empId = user.getEmployee().getId();
-		if (role != null && role.equalsIgnoreCase("admin")) {
+		if (role != null && role.equalsIgnoreCase("Project Manager")) {
 			List<Employee> employeeList = employeeService.getEmployeeListByReportingToId(empId);
-			request.getSession().setAttribute("employeeList", employeeList);
-			return new ModelAndView("adminView");
+			/*request.getSession().setAttribute("employeeList", employeeList);*/
+			Task task = new Task();
+			ModelAndView modelAndView = new ModelAndView("adminView", "command", task);
+			modelAndView.addObject("employeeList", employeeList);
+			return modelAndView;
 		} else {
 			List<Task> taskList = employeeService.getTaskListByEmpId(empId);
-			request.getSession().setAttribute("taskList", taskList);
-			return new ModelAndView("userView");
+			Task task = new Task();
+			ModelAndView modelAndView = new ModelAndView("userView", "command", task);
+			modelAndView.addObject("taskList", taskList);
+			return modelAndView;
 		}
 
 	}
