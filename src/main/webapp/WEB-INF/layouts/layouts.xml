@@ -22,7 +22,7 @@
 	
 	<!-- Task -->
 	<definition name="taskAddEdit" extends="DefaultTemplate">
-	    <put-attribute name="body" value="/WEB-INF/pages/taskadd.jsp.jsp" />
+	    <put-attribute name="body" value="/WEB-INF/pages/taskadd.jsp" />
 	</definition>
 
 

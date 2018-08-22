@@ -1,5 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,7 +110,7 @@ height:1%;
 <script>
 function getTask(taskId){
 	$.ajax({url: ctx+"/task/"+taskId, success: function(result){
-       alert("success");
+       
     }});
 }
 
@@ -158,7 +158,6 @@ function getTask(taskId){
 <div class="row">
   <div class="col-75">
     <div class="container">
-      <form action="">
         <div class="row">
           <div class="col-50">
           <h1 align="center" style="color:#0c5978"><strong>Edit Task</strong></h1>
@@ -170,25 +169,25 @@ function getTask(taskId){
 				</tr> --%>
 				<tr>
 					<td>Name :</td>
-					<td><form:input type="text" path="title" /></td>
+					<td>${task.title}</td>
+					<%-- <td><form:input type="text" path="task.title" /></td> --%>
 				</tr>
 				<tr>
 					<td>Project Name :</td>
 					<td>
-						<form:select path="project"> 
+						<%-- <form:select path="project"> 
   							<form:options items="${projects}" itemValue="id" itemLabel="projectName" />
- 						</form:select>
+ 						</form:select> --%>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" width="100%" class="btn-save" value="Edit Save" />
-					<input type="submit" value="Cancel" class="btn-cancel"></td>
+					<input type="button" value="Cancel" class="btn-cancel"></td>
 				</tr>
 			</table>
 		</form:form>
           </div>
         </div>
-      </form>
     </div>
   </div>
 </div>
