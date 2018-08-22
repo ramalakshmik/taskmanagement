@@ -31,7 +31,7 @@ public class TaskController {
 	public ModelAndView getTask(HttpServletRequest request,
 			HttpServletResponse response,@PathVariable("id") Integer taskId) {
 			Task task = taskService.getTaskById(taskId);
-			ModelAndView modelView = new ModelAndView("taskAddEdit"); //change this 
+			ModelAndView modelView = new ModelAndView("userView"); //change this 
 			modelView.addObject("task",task);
 				return modelView;
 	}

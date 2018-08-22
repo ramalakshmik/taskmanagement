@@ -1,4 +1,5 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,17 +10,14 @@
         <meta name="description" content="Task Management System" />
         <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
         <meta name="author" content="Codrops" />
-        <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="css/demo.css" />
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
-		<link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
-		<link rel="stylesheet" type="text/css" href="resources/styles/addtask.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+     <link rel="shortcut icon" href="resources/images/logo.png">
+<link rel="stylesheet" type="text/css" href="resources/styles/style.css" />
+<link rel="stylesheet" type="text/css" href="resources/styles/demo.css" />
+<link rel="stylesheet" type="text/css" href="resources/styles/custom.css" />
+<link rel="stylesheet" type="text/css" href="resources/styles/addtask.css">
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/start/jquery-ui.css" type="text/css" media="all" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js" type="text/javascript"></script>
 <style>
 <!-- menu details--
 body {margin:0;}
@@ -108,33 +106,19 @@ height:1%;
     width: 20%; /* Full width */
 }
 </style>
+<script>var ctx = "${pageContext.request.contextPath}"</script>
+<script>
+function getTask(taskId){
+	$.ajax({url: ctx+"/task/"+taskId, success: function(result){
+       alert("success");
+    }});
+}
+
+</script>
 </head>
 <body>
   <div class="container">
   
-  <!-- <header>
-  <h1>Task Management System<span></span></h1>
-  </header>
-  <div class="navbar">
-  <a href="#home">Home</a>
-  <a href="#" data-toggle="modal" data-target="#logoutModal">LogOut</a>
-</div> -->
-<%-- <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-body">
-        <p><i class="fa fa-question-circle"></i> Are you sure you want to log-off? <br /></p>
-        <div class="actionsBtns">
-            <form action="/logout" method="post">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <input type="submit" class="btn btn-default btn-primary" data-dismiss="modal" value="Logout" />
-	                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-            </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> --%>
 <br/>
 <br/>
 <br/>
@@ -155,10 +139,14 @@ height:1%;
     <td>${task.assignBy.firstName}</td>
     <td>${task.actualStartDate}</td>
     <td>${task.expectedEndDate}</td>
-	  <td><!-- <button type="button" class="btn btn-link">Edit</button> -->
+	  <!-- <td><button type="button" class="btn btn-link">Edit</button>
 	  	<a data-toggle="modal" data-target="#updateTaskModal" href="assign">Assign</a>
 	  </td>
-	  <td><button type="button" class="btn btn-link">View</button></td>
+	  <td><button type="button" class="btn btn-link">View</button></td> -->
+	  <td><a class="tbl-btn-view" data-toggle="modal" data-target=""
+						href="assign">View</a>
+					<td><div onclick="getTask(${task.id});" id="updateTask_${task.id}"><a class="tbl-btn-edit" data-toggle="modal" data-target="#updateTaskModal"
+						href="/task/${task.id}">Edit</a></div></td>
   </tr>
   </c:forEach>
 </table>
@@ -173,7 +161,7 @@ height:1%;
       <form action="">
         <div class="row">
           <div class="col-50">
-          <h1 align="center" style="color:#0c5978"><strong>Add Task</strong></h1>
+          <h1 align="center" style="color:#0c5978"><strong>Edit Task</strong></h1>
            <form:form method="POST" action="">
 			<table>
 				<%-- <tr>
@@ -185,8 +173,12 @@ height:1%;
 					<td><form:input type="text" path="title" /></td>
 				</tr>
 				<tr>
-					<td>Salary :</td>
-					<td><form:input type="text" path="taskDescription" width="50%"/></td>
+					<td>Project Name :</td>
+					<td>
+						<form:select path="project"> 
+  							<form:options items="${projects}" itemValue="id" itemLabel="projectName" />
+ 						</form:select>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" width="100%" class="btn-save" value="Edit Save" />
