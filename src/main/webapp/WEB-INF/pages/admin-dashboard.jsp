@@ -59,12 +59,13 @@ tr:nth-child(even) {
 					<td>${emp.designation}</td>
 					<td>
 						<!-- <button type="button" class="btn btn-link">Assign</button> -->
-						<a data-toggle="modal" data-target="#taskModal"
+						<a class="tbl-btn-assign" data-toggle="modal" data-target="#taskModal"
 						href="assign">Assign</a>
 					</td>
-					<td><button type="button" class="btn btn-link">View
-							History</button></td>
-					<td><button type="button" class="btn btn-link">Edit</button></td>
+					<td><a class="tbl-btn-view" data-toggle="modal" data-target="#taskModal"
+						href="assign">View</a>
+					<td><a class="tbl-btn-edit" data-toggle="modal" data-target="#taskModal"
+						href="assign">Edit</a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -91,8 +92,12 @@ tr:nth-child(even) {
 					<td><form:input type="text" path="title" /></td>
 				</tr>
 				<tr>
-					<td>Salary :</td>
-					<td><form:input type="text" path="taskDescription" width="50%"/></td>
+					<td>Praject Name :</td>
+					<td>
+						<form:select path="project"> 
+  							<form:options items="${projects}" itemValue="id" itemLabel="projectName" />
+ 						</form:select>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" width="100%" class="btn-save" value="Edit Save" />
