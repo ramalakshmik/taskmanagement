@@ -45,7 +45,7 @@ ADD COLUMN `updated_on` DATETIME NULL AFTER `updated_by`;
 CREATE TABLE `tmsdb`.`role` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `role_name` VARCHAR(45) NULL,
-  `role_description` VARCHAR(45) NULL,
+  `role_description` VARCHAR(300) NULL,
   PRIMARY KEY (`id`));
 ALTER TABLE `tmsdb`.`role` 
 ADD COLUMN `created_by` VARCHAR(20) NULL AFTER `role_description`,
