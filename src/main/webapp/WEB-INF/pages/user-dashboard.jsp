@@ -13,6 +13,7 @@
         <link rel="stylesheet" type="text/css" href="css/demo.css" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+		<link rel="stylesheet" type="text/css" href="resources/styles/addtask.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -143,7 +144,7 @@ height:1%;
       <th scope="col">Task Name</th>
       <th scope="col">Task Description</th>
       <th scope="col">Assigned By</th>
-      <th scope="col">Start Date</th>
+      <th scope="col">Actual Start Date</th>
       <th scope="col">Planned End Date</th>
 	  <th colspan="3">Actions</th>
     </tr>
@@ -152,8 +153,8 @@ height:1%;
     <td>${task.title}</td>
     <td>${task.taskDescription}</td>
     <td>${task.assignBy.firstName}</td>
-    <td>${task.startDate}</td>
-    <td>${task.endDate}</td>
+    <td>${task.actualStartDate}</td>
+    <td>${task.expectedEndDate}</td>
 	  <td><!-- <button type="button" class="btn btn-link">Edit</button> -->
 	  	<a data-toggle="modal" data-target="#updateTaskModal" href="assign">Assign</a>
 	  </td>

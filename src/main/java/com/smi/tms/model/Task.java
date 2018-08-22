@@ -42,12 +42,18 @@ public class Task extends BaseModel {
 	@Column(name = "task_description")
 	private String taskDescription;
 
-	@Column(name = "startDate")
-	private Date startDate;
+	@Column(name = "actual_start_date")
+	private Date actualStartDate;
 
-	@Column(name = "endDate")
-	private Date endDate;
+	@Column(name = "actual_end_date")
+	private Date actualEndDate;
 
+	@Column(name = "expected_start_date")
+	private Date expectedStartDate;
+
+	@Column(name = "expected_end_date")
+	private Date expectedEndDate;
+	
 	@Column(name = "status")
 	private String status;
 
@@ -102,21 +108,6 @@ public class Task extends BaseModel {
 		this.taskDescription = taskDescription;
 	}
 
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public Date getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
 
 	public String getStatus() {
 		return status;
@@ -140,6 +131,38 @@ public class Task extends BaseModel {
 
 	public void setAssignBy(Employee assignBy) {
 		this.assignBy = assignBy;
+	}
+
+	public Date getActualStartDate() {
+		return actualStartDate;
+	}
+
+	public void setActualStartDate(Date actualStartDate) {
+		this.actualStartDate = actualStartDate;
+	}
+
+	public Date getActualEndDate() {
+		return actualEndDate;
+	}
+
+	public void setActualEndDate(Date actualEndDate) {
+		this.actualEndDate = actualEndDate;
+	}
+
+	public Date getExpectedStartDate() {
+		return expectedStartDate;
+	}
+
+	public void setExpectedStartDate(Date expectedStartDate) {
+		this.expectedStartDate = expectedStartDate;
+	}
+
+	public Date getExpectedEndDate() {
+		return expectedEndDate;
+	}
+
+	public void setExpectedEndDate(Date expectedEndDate) {
+		this.expectedEndDate = expectedEndDate;
 	}
 
 	

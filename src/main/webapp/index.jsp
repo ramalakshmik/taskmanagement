@@ -32,7 +32,7 @@
                     <a class="hiddenanchor" id="tologin"></a>
                     <div id="wrapper">
                         <div id="login" class="animate form">
-                            <form action="login" autocomplete="off" method="POST"> 
+                            <form action="login" autocomplete="on" method="POST"> 
                                 <!-- <h1>Log in</h1>  -->
                                 <div>
                                 	<img class="logoCenter" alt="Logo" src="resources/images/logo.png">
