@@ -24,7 +24,19 @@ public class Role extends BaseModel{
 		this.id = id;
 	}
 
+	@Column(name = "role")
 	private String role;
+	
+	@Column(name = "role_description")
+	private String roleDescription;
+	
+	public String getRoleDescription() {
+		return roleDescription;
+	}
+
+	public void setRoleDescription(String roleDescription) {
+		this.roleDescription = roleDescription;
+	}
 
 	public String getRole() {
 		return role;
