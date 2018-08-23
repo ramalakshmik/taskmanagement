@@ -1,6 +1,22 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+	table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
 
+td, th {
+	border: 2px solid #dddddd;
+	text-align: left;
+	padding: 7px;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+</style>
 	<div>
 		<table style="width: 80%" align="center">
 			<tr>

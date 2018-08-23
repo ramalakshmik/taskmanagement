@@ -61,109 +61,8 @@ body {
 	  text-align: center;
 }
 
- /* admin */
-table {
-	font-family: arial, sans-serif;
-	border-collapse: collapse;
-	width: 100%;
-}
+table th{font-weight: bold;}
 
-td, th {
-	border: 2px solid #dddddd;
-	text-align: left;
-	padding: 7px;
-}
-
-tr:nth-child(even) {
-	background-color: #dddddd;
-}
-
-/* user */
-body {margin:0;}
-
-.navbar {
-    overflow: hidden;
-    background-color: #333;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.navbar a {
-    float: left;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.subnav {
-    float: left;
-    overflow: hidden;
-}
-
-.subnav .subnavbtn {
-    font-size: 16px;    
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-}
-
-.navbar a:hover, .subnav:hover .subnavbtn {
-    background-color: red;
-}
-
-.subnav-content {
-    display: none;
-    position: absolute;
-    left: 0;
-    background-color: red;
-    width: 100%;
-    z-index: 1;
-}
-
-.subnav-content a {
-    float: left;
-    color: white;
-    text-decoration: none;
-}
-
-.subnav-content a:hover {
-    background-color: #eee;
-    color: black;
-}
-
-.subnav:hover .subnav-content {
-    display: block;
-}
-<!--end of menu details-->
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 2px solid #dddddd;
-    text-align: left;
-    padding: 7px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-.navbar {
-    overflow: hidden;
-    background-color:#0c5978;
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-	left:0;
-height:1%;
-    width: 20%; /* Full width */
-}
 
 </style>
 </head>
@@ -177,9 +76,9 @@ height:1%;
 				<tiles:insertAttribute name="body" />
 			</div>
 		
-			<div class="footer">
+			<%-- <div class="footer">
 				<tiles:insertAttribute name="footer" />
-			</div>
+			</div> --%>
 		</div>
 
 </body>
