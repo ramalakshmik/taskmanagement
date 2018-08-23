@@ -1,3 +1,6 @@
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:url var="ctx" value="/resources"/>
 <style>
 	.header {
   overflow: hidden;
@@ -37,7 +40,7 @@
 </style>
 
  <div class="header" style="display: flex;flex-direction: row;justify-content: space-between;">
-    <img class="" style="float:left;width:25%" alt="Logo" src="resources/images/logo.png">
+    <img class="" style="float:left;width:18%" alt="Logo" src="${ctx}/images/logo.png">
   	<h5>Task Management System</h5>
   	<div>Logout</div>
 </div> 

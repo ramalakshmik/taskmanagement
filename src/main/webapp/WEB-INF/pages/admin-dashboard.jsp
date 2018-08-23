@@ -1,49 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta charset="UTF-8" />
-<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
-<title>Task Management System</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Time Management System" />
-<meta name="keywords"
-	content="html5, css3, form, switch, animation, :target, pseudo-class" />
-<meta name="author" content="Codrops" />
-<link rel="shortcut icon" href="resources/images/logo.png">
-<link rel="stylesheet" type="text/css" href="resources/styles/style.css" />
-<link rel="stylesheet" type="text/css" href="resources/styles/demo.css" />
-<link rel="stylesheet" type="text/css" href="resources/styles/custom.css" />
-<link rel="stylesheet" type="text/css" href="resources/styles/addtask.css">
-<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/start/jquery-ui.css" type="text/css" media="all" />
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(document).ready(function (){
-    $( "#datepicker1").datepicker();
-	$( "#datepicker2").datepicker();
-  } );
-</script>
-</head>
-<style>
-table {
-	font-family: arial, sans-serif;
-	border-collapse: collapse;
-	width: 100%;
-}
 
-td, th {
-	border: 2px solid #dddddd;
-	text-align: left;
-	padding: 7px;
-}
-
-tr:nth-child(even) {
-	background-color: #dddddd;
-}
-</style>
-<body>
 	<div>
 		<table style="width: 80%" align="center">
 			<tr>
@@ -60,17 +17,17 @@ tr:nth-child(even) {
 					<td>
 						<!-- <button type="button" class="btn btn-link">Assign</button> -->
 						<a class="tbl-btn-assign" data-toggle="modal" data-target="#taskModal"
-						href="assign">Assign</a>
+						href="">Assign</a>
 					</td>
-					<td><a class="tbl-btn-view" data-toggle="modal" data-target="#taskModal"
-						href="assign">View</a>
-					<td><a class="tbl-btn-edit" data-toggle="modal" data-target="#taskModal"
-						href="assign">Edit</a></td>
+					<td><a class="tbl-btn-view" data-toggle="modal" data-target=""
+						href="">View</a>
+					<td><a class="tbl-btn-edit" data-toggle="modal" data-target=""
+						href="">Edit</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 
-<div class="modal" id="taskModal" tabindex="-1" role="dialog" aria-hidden="true">
+<%-- <div class="modal" id="taskModal" tabindex="-1" role="dialog" aria-hidden="true">
 <div class="modal-dialog modal-sm">
 <div class="modal-content-w">
 <div class="modal-body-w">
@@ -83,10 +40,10 @@ tr:nth-child(even) {
           <h1 align="center" style="color:#0c5978"><strong>Add Task</strong></h1>
            <form:form method="POST" action="">
 			<table>
-				<%-- <tr>
+				<tr>
 					<td></td>
 					<td><form:hidden path="id" /></td>
-				</tr> --%>
+				</tr>
 				<tr>
 					<td>Name :</td>
 					<td><form:input type="text" path="title" /></td>
@@ -114,7 +71,5 @@ tr:nth-child(even) {
 </div>
 </div>
 </div>
+</div> --%>
 </div>
-</div>
-</body>
-</html>
