@@ -58,7 +58,7 @@ public class TaskDAOImpl implements TaskDAO {
 			HibernateTemplate hibernateTemplate = HibernateUtil
 					.getHibernateTemplate();
 			hibernateTemplate.setCheckWriteOperations(false);
-			hibernateTemplate.save(task);
+			hibernateTemplate.saveOrUpdate(task);
 		} catch (Exception e) {
 		}
 	}

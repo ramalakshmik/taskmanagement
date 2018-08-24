@@ -8,9 +8,11 @@
 	}
 </style>
 <c:url var="employeeList" value="/employeelist"/>
+<c:url var="saveTask" value="/task/updateTask"/>
 <div class="container">
 	<h3>Task Details</h3>
-	<form:form method="POST" action="" id="taskForm">
+	<form:form method="POST" action="${saveTask}" id="taskForm">
+		<form:input type="hidden" path="id"></form:input>
 		<table style="width: 80%" align="center">
 			<tr>
 				<td>Title :</td>
@@ -41,6 +43,10 @@
 						<td>Project :</td>
 						<td>
 						 	<form:input type="text" path="project.projectName" class="readOnly"  readonly="true"/>
+						 	<%-- <form:select path="project">
+								<form:options name="proj" items="${projects}" itemValue="id"
+									itemLabel="projectName" />
+							</form:select> --%>
 						</td>
 					</tr> 
 				<tr>

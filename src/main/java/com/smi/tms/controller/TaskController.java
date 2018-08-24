@@ -51,8 +51,8 @@ public class TaskController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView getTask(HttpServletRequest request,
 			HttpServletResponse response, @PathVariable("id") Integer taskId) {
-		Task task = taskService.getTaskById(taskId);
 		String pageName;
+		Task task = taskService.getTaskById(taskId);
 		
 		String role = TMSCommonUtil.getRole(request);
 		
@@ -62,9 +62,12 @@ public class TaskController {
 		else {
 			pageName = "taskView";
 		}
+		List<Project> projects = projectService.listAll();
+		List<Module> modules = moduleService.listAll();
 		
 		ModelAndView modelView = new ModelAndView(pageName,"command",task); // change this
-		
+		modelView.addObject("projects", projects);
+		modelView.addObject("moduleList", modules);
 		return modelView;
 	}
 
@@ -97,6 +100,17 @@ public class TaskController {
 		task.setAssignBy(assigner);
 		task.setEmployee(assignee);
 		taskService.save(task);
+		return new ModelAndView("redirect:/employeelist");
+	}
+	
+	@RequestMapping(value = "/updateTask", method = RequestMethod.POST)
+	public ModelAndView taskUpdate(@ModelAttribute("task") Task task,
+			BindingResult bindingResult, HttpServletRequest request,
+			HttpServletResponse response) {
+		Task beforeTask = taskService.getTaskById(task.getId());
+		beforeTask.setReason(task.getReason());
+		beforeTask.setStatus(task.getStatus());
+		taskService.save(beforeTask);
 		return new ModelAndView("redirect:/employeelist");
 	}
 
