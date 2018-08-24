@@ -34,7 +34,6 @@
 <link rel="stylesheet" href="${ctx}/styles/bootstrap.min.css">
 
 <style>
-
 body {
     font-family: Arial, Helvetica, sans-serif;
 }

@@ -23,30 +23,44 @@ public class TaskDAOImpl implements TaskDAO {
 	}
 
 	public void changeStatus(Integer id) {
-		Session session = HibernateUtil.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		String status = (String) session.createQuery("SELECT t.status from Task t WHERE t.id = :id")
+		Session session = HibernateUtil.getHibernateTemplate()
+				.getSessionFactory().getCurrentSession();
+		String status = (String) session
+				.createQuery("SELECT t.status from Task t WHERE t.id = :id")
 				.setParameter("id", id).getSingleResult();
 		switch (status) {
 		case "new":
-			session.createQuery("UPDATE Task t SET t.status = 'InProgress' WHERE t.id = :id")
+			session.createQuery(
+					"UPDATE Task t SET t.status = 'InProgress' WHERE t.id = :id")
 					.setParameter("id", id).executeUpdate();
 			return;
 		case "InProgress":
-			session.createQuery("UPDATE Task t SET t.status = 'completed' WHERE t.id = :id")
+			session.createQuery(
+					"UPDATE Task t SET t.status = 'completed' WHERE t.id = :id")
 					.setParameter("id", id).executeUpdate();
 			return;
 		case "Completed":
-			session.createQuery("DELETE FROM Task t WHERE t.id = :id").setParameter("id", id)
-					.executeUpdate();
+			session.createQuery("DELETE FROM Task t WHERE t.id = :id")
+					.setParameter("id", id).executeUpdate();
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public Task getTaskById(Integer taskId) {
 		HibernateTemplate template = HibernateUtil.getHibernateTemplate();
-		Task task =  template.get(Task.class,taskId);
+		Task task = template.get(Task.class, taskId);
 		return task;
+	}
+
+	@Override
+	public void save(Task task) {
+		try {
+			HibernateTemplate hibernateTemplate = HibernateUtil
+					.getHibernateTemplate();
+			hibernateTemplate.setCheckWriteOperations(false);
+			hibernateTemplate.save(task);
+		} catch (Exception e) {
+		}
 	}
 
 }

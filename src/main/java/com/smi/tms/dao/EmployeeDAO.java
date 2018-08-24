@@ -8,6 +8,10 @@ import com.smi.tms.model.Task;
 public interface EmployeeDAO {
 
 	List<Employee> getEmployeeListByReportingToId(Integer reportingToId);
-	
+
 	List<Task> getTaskListByEmpId(Integer id);
+
+	boolean addEmployee(Employee employee);
+
+	Task getLastAssignedTaskBy(Integer empId);
 }

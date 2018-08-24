@@ -28,6 +28,16 @@
 	<definition name="taskView" extends="DefaultTemplate">
 	    <put-attribute name="body" value="/WEB-INF/pages/taskview.jsp" />
 	</definition>
+	
+		<!-- Add Employee -->
+	<definition name="addEmployee" extends="DefaultTemplate">
+	    <put-attribute name="body" value="/WEB-INF/pages/addEmployee.jsp" />
+	</definition>
+	
+	<!-- Assign Task -->
+	<definition name="assignTask" extends="DefaultTemplate">
+	    <put-attribute name="body" value="/WEB-INF/pages/assignTask.jsp" />
+	</definition>
 
 
 </tiles-definitions>

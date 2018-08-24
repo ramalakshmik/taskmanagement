@@ -18,4 +18,10 @@ public class ProjectDAOImpl implements ProjectDAO {
 				"FROM Project ");
 	}
 
+	@Override
+	public Project getProjectBy(int projectId) {
+		return (Project) HibernateUtil.getHibernateTemplate().get(
+				Project.class, projectId);
+	}
+
 }

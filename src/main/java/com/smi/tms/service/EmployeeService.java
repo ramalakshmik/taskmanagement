@@ -10,4 +10,9 @@ public interface EmployeeService {
 	List<Employee> getEmployeeListByReportingToId(Integer reportingToId);
 	
 	List<Task> getTaskListByEmpId(Integer empId);
+	
+	boolean addEmployee(Employee employee);
+	
+	Task getLastAssignedTaskBy(Integer empId);
+
 }
