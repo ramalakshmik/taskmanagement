@@ -8,4 +8,7 @@ public interface ProjectService {
 
 	List<Project> listAll();
 	
+	Project getProjectBy(int parseInt);
+
+	
 }

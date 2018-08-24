@@ -28,4 +28,10 @@ public class TaskServiceImpl implements TaskService {
 		return taskDAO.getTaskById(taskId);
 	}
 
+	@Override
+	@Transactional
+	public void save(Task task) {
+		taskDAO.save(task);
+	}
+
 }

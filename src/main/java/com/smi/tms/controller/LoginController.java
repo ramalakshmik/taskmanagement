@@ -2,6 +2,7 @@ package com.smi.tms.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.smi.tms.model.User;
 import com.smi.tms.service.LoginService;
+import com.smi.tms.util.TMSCommonUtil;
 
 @Controller
 public class LoginController {
@@ -19,15 +21,15 @@ public class LoginController {
 	LoginService loginService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView showForm(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView showForm(HttpServletRequest request,
+			HttpServletResponse response) {
 		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
 		User user = loginService.getUser(userName, password);
-		request.getSession().setAttribute("user", user);
-		// if (user.getRole().get(0).getRole().equalsIgnoreCase("admin")) {
+		HttpSession session = request.getSession();
+		TMSCommonUtil.setSession(session);
+		session.setAttribute("user", user);
 		return new ModelAndView("redirect:employeelist");
-		// }
-
 	}
 
 }
