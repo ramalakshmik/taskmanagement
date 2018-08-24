@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.smi.tms.model.Role;
 import com.smi.tms.model.Task;
+import com.smi.tms.model.User;
 import com.smi.tms.service.EmployeeService;
 import com.smi.tms.service.TaskService;
+import com.smi.tms.util.TMSCommonUtil;
 
 @Controller
 @RequestMapping(value = "/task")
@@ -31,7 +34,19 @@ public class TaskController {
 	public ModelAndView getTask(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("id") Integer taskId) {
 		Task task = taskService.getTaskById(taskId);
-		ModelAndView modelView = new ModelAndView("taskAddEdit","command",task); // change this
+		String pageName;
+		
+		String role = TMSCommonUtil.getRole(request);
+		
+		if (role != null && role.equalsIgnoreCase("Project Manager")) {
+			pageName = "taskAddEdit";
+		}
+		else {
+			pageName = "taskView";
+		}
+		
+		ModelAndView modelView = new ModelAndView(pageName,"command",task); // change this
+		
 		return modelView;
 	}
 

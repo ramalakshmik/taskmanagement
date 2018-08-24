@@ -18,6 +18,7 @@ import com.smi.tms.model.Task;
 import com.smi.tms.model.User;
 import com.smi.tms.service.EmployeeService;
 import com.smi.tms.service.ProjectService;
+import com.smi.tms.util.TMSCommonUtil;
 
 @Controller
 public class EmployeeController {
@@ -31,9 +32,8 @@ public class EmployeeController {
 	@RequestMapping(value = "/employeelist", method = RequestMethod.GET)
 	public ModelAndView showForm(HttpServletRequest request,
 			HttpServletResponse response) {
-		User user = (User) request.getSession().getAttribute("user");
-		Role role2 = user.getRole().get(0);
-		String role = role2.getRole();
+		String role = TMSCommonUtil.getRole(request);
+		User user = TMSCommonUtil.getUser(request);
 		int empId = user.getEmployee().getId();
 		if (role != null && role.equalsIgnoreCase("Project Manager")) {
 			List<Employee> employeeList = employeeService.getEmployeeListByReportingToId(empId);

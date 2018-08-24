@@ -24,6 +24,10 @@
 	<definition name="taskAddEdit" extends="DefaultTemplate">
 	    <put-attribute name="body" value="/WEB-INF/pages/taskedit.jsp" />
 	</definition>
+	
+	<definition name="taskView" extends="DefaultTemplate">
+	    <put-attribute name="body" value="/WEB-INF/pages/taskview.jsp" />
+	</definition>
 
 
 </tiles-definitions>
