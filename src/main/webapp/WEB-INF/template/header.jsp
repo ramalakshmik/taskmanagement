@@ -9,11 +9,12 @@
 
 .header a {
 	float: left;
-	color: black;
+	color: white;
 	text-align: center;
-	padding: 5px;
+	padding: 3px;
 	text-decoration: none;
 	border-radius: 4px;
+	font-size:15px;
 }
 
 .header a:hover {
@@ -35,19 +36,24 @@
 	right: 10px;
 	top: 5px;
 }
+
 </style>
 
 <div class="header"
 	style="display: flex; flex-direction: row; justify-content: space-between;">
 	<img class="" style="float: left; width: 18%" alt="Logo"
 		src="${ctx}/images/logo.png">
-	<h1>Task Management System</h1>
+	<h2 style="color:#0c5978;">Task Management System</h2>
 	<nav>
 		<p>
-			<a href="addEmployee">« Add Employee</a>
+			<div id="addEmp">
+				<a class="tbl-btn-assign" href="addEmployee">Add Employee</a>
+			</div>
 		</p>
 		<p>
-			<a  href="logout">Log out »</a>
+			<div id="logout">
+				<a class="tbl-btn-edit" href="logout">Logout</a>
+			</div>
 		</p>
 	</nav>
 </div>

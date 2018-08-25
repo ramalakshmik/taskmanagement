@@ -22,20 +22,23 @@ tr:nth-child(even) {
 		<tr>
 			<th>Employee Name</th>
 			<th>Department</th>
-			<th>Designation</th>
-			<th colspan="3">Task Actions</th>
+			<th colspan="2">Designation</th>
+			<th colspan="2">Task Actions</th>
 		</tr>
 		<c:forEach var="emp" items="${employeeList}">
 			<tr>
 				<td>${emp.firstName}</td>
 				<td>${emp.department}</td>
 				<td>${emp.designation}</td>
-				<td><a class="tbl-btn-assign" href="task/assignTask">Assign</a></td>
-				<td><div id="viewEmpTask_${emp.id}">
-						<a class="tbl-btn-edit" href="task/list?empId=${emp.id}">View</a>
-					</div></td>
-				<td><a class="tbl-btn-edit" data-toggle="modal"
+				<td><a style="color:white;text-align:center;padding:3px;border-radius:4px;font-size:15px;cursor:pointer;text-decoration:none;" 
+				class="tbl-btn-edit" data-toggle="modal"
 					data-target="#taskModal" href="adminTaskEdit/${emp.id}">Edit</a></td>
+				<td><a style="color:white;text-align:center;padding:3px;border-radius:4px;font-size:15px;cursor:pointer;text-decoration:none;" 
+				class="tbl-btn-assign" href="task/assignTask">Assign</a></td>
+				<td><div id="viewEmpTask_${emp.id}">
+						<a style="color:white;text-align:center;padding:3px;border-radius:4px;font-size:15px;cursor:pointer;text-decoration:none;" 
+						class="tbl-btn-edit" href="task/list?empId=${emp.id}">View</a>
+				</div></td>
 			</tr>
 		</c:forEach>
 	</table>
