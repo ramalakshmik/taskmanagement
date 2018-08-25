@@ -25,11 +25,9 @@ public class BaseModel {
 	private String updatedBy;
 
 	@Column(name = "created_on")
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdOn;
 
 	@Column(name = "updated_on")
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
 
 	@Column(name = "is_active")
