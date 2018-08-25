@@ -388,3 +388,15 @@ p.change_link{
     margin-right: auto;
     width: 50%;
 }
+
+.textNone:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.w100p{
+	width:100%;
+}
+
+.mt10p{
+	margin-top:10px
+}

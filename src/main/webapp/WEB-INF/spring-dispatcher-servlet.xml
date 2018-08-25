@@ -82,9 +82,4 @@
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 	</bean>
 
-	<!-- <bean class="com.smi.tms.dao.impl.LoginDAOImpl" /> -->
-	<!-- <bean class="com.smi.tms.dao.impl.UserDAOImpl" />
-	<bean class="com.smi.tms.dao.impl.TaskDAOImpl" /> -->
-
-	
 </beans>

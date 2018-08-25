@@ -1,6 +1,9 @@
 package com.smi.tms.controller;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +32,8 @@ import com.smi.tms.service.EmployeeService;
 import com.smi.tms.service.ModuleService;
 import com.smi.tms.service.ProjectService;
 import com.smi.tms.service.TaskService;
+import com.smi.tms.util.Constants;
+import com.smi.tms.util.StatusEnum;
 import com.smi.tms.util.TMSCommonUtil;
 
 @Controller
@@ -55,7 +60,7 @@ public class TaskController {
 		
 		String role = TMSCommonUtil.getRole(request);
 		
-		if (role != null && role.equalsIgnoreCase("Project Manager")) {
+		if (role != null && role.equalsIgnoreCase(Constants.PROJECT_MANAGER)) {
 			pageName = "taskAddEdit";
 		}
 		else {
@@ -67,6 +72,10 @@ public class TaskController {
 		ModelAndView modelView = new ModelAndView(pageName,"command",task); // change this
 		modelView.addObject("projects", projects);
 		modelView.addObject("moduleList", modules);
+		
+		//Status load from Enum
+		Map<Integer,String> statusMap = Arrays.stream(StatusEnum.values()).collect(Collectors.toMap(stat-> stat.ordinal(), stat -> stat.getStatus()));
+		modelView.addObject("statusMap", statusMap);
 		return modelView;
 	}
 

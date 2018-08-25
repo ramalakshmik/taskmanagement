@@ -5,15 +5,10 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(name = "task")
@@ -45,7 +40,7 @@ public class Task extends BaseModel {
 	private Date expectedEndDate;
 	
 	@Column(name = "status")
-	private String status;
+	private Integer status;
 
 	@Column(name = "reason")
 	private String reason;
@@ -99,11 +94,11 @@ public class Task extends BaseModel {
 	}
 
 
-	public String getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
