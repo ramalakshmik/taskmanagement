@@ -588,8 +588,15 @@ ADD COLUMN `role` varchar(20) NULL AFTER `role_description`;
 
 
 
+/* To change status as integer*/
+ALTER TABLE task 
+DROP COLUMN status;
 
 
+ALTER TABLE task
+ADD COLUMN status int Null After module_id;
+
+update task set status=0;
 
 
 
