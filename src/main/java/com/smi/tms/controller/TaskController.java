@@ -1,5 +1,6 @@
 package com.smi.tms.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -13,8 +14,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.smi.tms.formatter.ModuleConverter;
-import com.smi.tms.formatter.ProjectConverter;
 import com.smi.tms.model.Employee;
 import com.smi.tms.model.Module;
 import com.smi.tms.model.Project;
@@ -39,7 +36,7 @@ import com.smi.tms.util.TMSCommonUtil;
 
 @Controller
 @RequestMapping(value = "/task")
-public class TaskController {
+public class TaskController extends BaseController{
 
 	@Autowired
 	TaskService taskService;
@@ -85,8 +82,18 @@ public class TaskController {
 			HttpServletResponse response,
 			@RequestParam(value = "empId", required = true) Integer empId) {
 		List<Task> taskList = employeeService.getTaskListByEmpId(empId);
+		List<Task> showTaskList = new ArrayList<Task>();
+		for (Task task : taskList) {
+			/*Date actualStartDate = task.getActualStartDate();
+			long startDateTime = actualStartDate.getTime();
+			long currentDateTime = new Date().getTime();
+			if(startDateTime < currentDateTime) {
+			}*/
+			task.setStatusColor("red");
+			showTaskList.add(task);
+		}
 		ModelAndView modelView = new ModelAndView("userView");
-		modelView.addObject("taskList", taskList);
+		modelView.addObject("taskList", showTaskList);
 		return modelView;
 	}
 
@@ -120,16 +127,11 @@ public class TaskController {
 		beforeTask.setReason(task.getReason());
 		beforeTask.setStatus(task.getStatus());
 		beforeTask.setUpdatedOn(new Date());
+		beforeTask.setActualStartDate(new Date());
 		taskService.save(beforeTask);
 		return new ModelAndView("redirect:/employeelist");
 	}
 
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(Project.class, new ProjectConverter());
-		binder.registerCustomEditor(Module.class, new ModuleConverter());
-	}
-	
 	@RequestMapping(value="assignTask", method=RequestMethod.GET)
 	public ModelAndView showAssignForm() {
 		Task task = new Task();

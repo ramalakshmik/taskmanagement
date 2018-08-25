@@ -9,8 +9,6 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="UTF-8" />
-        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
-        <title>Task Management System</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <meta name="description" content="Time Management System" />
         <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
@@ -23,7 +21,7 @@
     <body>
         <div class="container">
             <header>
-                <h1>Task Management System<span></span></h1>
+                <h1>Task Management System</h1>
             </header>
             <section>				
                 <div id="container_demo" >

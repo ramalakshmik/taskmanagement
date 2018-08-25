@@ -1,5 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
 /* user */
 body {
@@ -92,30 +93,28 @@ tr:nth-child(even) {
 	width: 20%; /* Full width */
 }
 </style>
+
 <div class="container">
 	<br />
 	<h3>Task List</h3>
-	<table style="width: 80%" align="center">
+	<table style="width: 80%;" align="center">
 		<tr>
 			<th scope="col">Task Name</th>
 			<th scope="col">Task Description</th>
 			<th scope="col">Assigned By</th>
-			<th scope="col">Actual Start Date</th>
-			<th scope="col">Planned End Date</th>
+			<th scope="col">Start Date</th>
+			<th scope="col">End Date</th>
 			<th colspan="3">Actions</th>
 		</tr>
 		<c:choose>
 			<c:when test="${not empty taskList}">
 				<c:forEach var="task" items="${taskList}">
-					<tr>
+					<tr style="color: ${task.statusColor}">
 						<td>${task.title}</td>
 						<td>${task.taskDescription}</td>
 						<td>${task.assignBy.firstName}</td>
-						<td>${task.actualStartDate}</td>
-						<td>${task.expectedEndDate}</td>
-						<td>
-							<!-- <a class="tbl-btn-view" data-toggle="modal" data-target=""
-      href="assign">View</a> -->
+						<td><fmt:formatDate value="${task.actualStartDate}" pattern="${pattern}" /></td>
+						<td><fmt:formatDate value="${task.actualEndDate}" pattern="${pattern}" /></td>
 						<td><form:form id="task_${task.id}" action="task/${task.id}"
 								method="GET">
 								<input type="submit" value="Edit" class="w50p">

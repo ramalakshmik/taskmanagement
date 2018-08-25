@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Task Management System</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Time Management System" />
 <meta name="keywords"

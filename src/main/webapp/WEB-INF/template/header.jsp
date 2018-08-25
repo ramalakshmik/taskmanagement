@@ -41,7 +41,7 @@
 	style="display: flex; flex-direction: row; justify-content: space-between;">
 	<img class="" style="float: left; width: 18%" alt="Logo"
 		src="${ctx}/images/logo.png">
-	<h5>Task Management System</h5>
+	<h1>Task Management System</h1>
 	<nav>
 		<p>
 			<a href="addEmployee">« Add Employee</a>

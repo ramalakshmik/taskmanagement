@@ -25,7 +25,7 @@ import com.smi.tms.util.Constants;
 import com.smi.tms.util.TMSCommonUtil;
 
 @Controller
-public class EmployeeController {
+public class EmployeeController extends BaseController{
 
 	@Autowired
 	EmployeeService employeeService;

@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "task")
@@ -48,6 +49,9 @@ public class Task extends BaseModel {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "assigned_to")
 	private Employee employee;
+	
+	@Transient
+	private String statusColor;
 
 	public Employee getEmployee() {
 		return employee;
@@ -148,6 +152,14 @@ public class Task extends BaseModel {
 
 	public void setExpectedEndDate(Date expectedEndDate) {
 		this.expectedEndDate = expectedEndDate;
+	}
+
+	public String getStatusColor() {
+		return statusColor;
+	}
+
+	public void setStatusColor(String statusColor) {
+		this.statusColor = statusColor;
 	}
 
 	

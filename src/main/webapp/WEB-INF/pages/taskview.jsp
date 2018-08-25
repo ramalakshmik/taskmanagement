@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
 .readOnly {
 	background-color: rgb(235, 235, 228);
@@ -32,7 +33,7 @@
 			<tr>
 				<td>Actual Start Date :</td>
 				<td><form:input type="text" path="actualStartDate"
-						class="readOnly" readonly="true" /></td>
+						 class="readOnly" readonly="true" /></td>
 			</tr>
 			<tr>
 				<td>ExpectedStart Date :</td>
