@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.smi.tms.model.Role;
 import com.smi.tms.formatter.ModuleConverter;
 import com.smi.tms.formatter.ProjectConverter;
 import com.smi.tms.model.Employee;
