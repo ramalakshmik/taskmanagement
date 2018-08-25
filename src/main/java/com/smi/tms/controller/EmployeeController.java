@@ -21,6 +21,7 @@ import com.smi.tms.model.User;
 import com.smi.tms.service.EmployeeService;
 import com.smi.tms.service.ModuleService;
 import com.smi.tms.service.ProjectService;
+import com.smi.tms.util.Constants;
 import com.smi.tms.util.TMSCommonUtil;
 
 @Controller
@@ -42,7 +43,7 @@ public class EmployeeController {
 		Role role2 = user.getRole().get(0);
 		String role = role2.getRole();
 		int empId = user.getEmployee().getId();
-		if (role != null && role.equalsIgnoreCase("ProjectManager")) {
+		if (role != null && role.equalsIgnoreCase(Constants.PROJECT_MANAGER)) {
 			List<Employee> employeeList = employeeService
 					.getEmployeeListByReportingToId(empId);
 			/* request.getSession().setAttribute("employeeList", employeeList); */
