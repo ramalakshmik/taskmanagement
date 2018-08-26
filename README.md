@@ -600,7 +600,20 @@ update task set status=0;
 
 
 
+insert into task(title,project_id,module_id,status,task_description,actual_start_date,actual_end_date,
+expected_start_date,expected_end_date,reason,assigned_to,assigned_by,is_active,created_on,created_by,updated_on,updated_by)
+values('kt',1,1,0,'test',now(),now(),null,null,null,3,1,1,now(),1,null,null);
 
+insert into task values(2,'kt1',1,2,1,'test1',now(),now(),null,null,null,3,1,1,now(),1,null,null);
+
+
+ALTER TABLE Project
+ADD COLUMN start_date DATETIME NULL AFTER `project_name`;
+
+ALTER TABLE Project
+ADD COLUMN end_date DATETIME NULL AFTER `start_date`;
+
+update project set start_date=now(),end_date=now();
 
 
 
