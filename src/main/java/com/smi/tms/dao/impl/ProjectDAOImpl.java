@@ -15,11 +15,11 @@ public class ProjectDAOImpl implements ProjectDAO {
 	@Override
 	public List<Project> listAll() {
 		return (List<Project>) HibernateUtil.getHibernateTemplate().find(
-				"FROM Project ");
+				"FROM Project where isActive = 1");
 	}
 
 	@Override
-	public Project getProjectBy(int projectId) {
+	public Project getProjectById(int projectId) {
 		return (Project) HibernateUtil.getHibernateTemplate().get(
 				Project.class, projectId);
 	}

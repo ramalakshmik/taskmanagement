@@ -20,14 +20,24 @@ tr:nth-child(even) {
 <div>
 	<table style="width: 80%" align="center">
 		<tr>
+		   <td colspan="7">
+			<div class="fright whiteTxt" id="addEmp">
+				<a class="" href="addEmployee">Add Employee</a>
+			</div>
+			</td>
+		</tr>
+		<tr>
+			<th>Id</th>
 			<th>Employee Name</th>
 			<th>Department</th>
 			<th colspan="2">Designation</th>
 			<th colspan="2">Task Actions</th>
 		</tr>
+		
 		<c:forEach var="emp" items="${employeeList}">
 			<tr>
-				<td>${emp.firstName}</td>
+				<td>SMI_${emp.id}</td>
+				<td>${emp.firstName} ${emp.lastName}</td>
 				<td>${emp.department}</td>
 				<td>${emp.designation}</td>
 				<td><a style="color:white;text-align:center;padding:3px;border-radius:4px;font-size:15px;cursor:pointer;text-decoration:none;" 

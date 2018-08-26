@@ -1,10 +1,9 @@
 package com.smi.tms.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +15,12 @@ public class Project extends BaseModel{
 	
 	@Column(name="project_desc")
 	private String projectDesc;
+	
+	@Column(name="start_date")
+	private Date startDate;
+	
+	@Column(name="end_date")
+	private Date endDate;
 	
 	public String getProjectName() {
 		return projectName;
@@ -31,6 +36,22 @@ public class Project extends BaseModel{
 
 	public void setProjectDesc(String projectDesc) {
 		this.projectDesc = projectDesc;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 	
 	

@@ -6,38 +6,51 @@
     <definition name="DefaultTemplate"  
       template="/WEB-INF/template/base-layout.jsp">
 			<put-attribute name="header" value="/WEB-INF/template/header.jsp" />
-			<!-- <put-attribute name="menu" value="/WEB-INF/template/menu.jsp" /> -->
+			<put-attribute name="menu" value="" />
 			<put-attribute name="body" value="" />
 			<!-- <put-attribute name="footer" value="/WEB-INF/template/footer.jsp" /> -->
 	</definition>
 	
     <!-- Views -->
     <definition name="adminView" extends="DefaultTemplate">
-    	<put-attribute name="body" value="/WEB-INF/pages/admin-dashboard.jsp" />
-	</definition>
-	
-	<definition name="userView" extends="DefaultTemplate">
-	    <put-attribute name="body" value="/WEB-INF/pages/user-dashboard.jsp" />
+    	<put-attribute name="menu" value="/WEB-INF/pages/admin/admin-menu.jsp" />
+    	<put-attribute name="body" value="/WEB-INF/pages/admin/admin-dashboard.jsp" />
 	</definition>
 	
 	<!-- Task -->
-	<definition name="taskAddEdit" extends="DefaultTemplate">
-	    <put-attribute name="body" value="/WEB-INF/pages/taskedit.jsp" />
+	<definition name="taskAddEdit" extends="adminView">
+	    <put-attribute name="body" value="/WEB-INF/pages/admin/taskedit.jsp" />
 	</definition>
 	
-	<definition name="taskView" extends="DefaultTemplate">
-	    <put-attribute name="body" value="/WEB-INF/pages/taskview.jsp" />
+	<definition name="taskView" extends="adminView">
+	    <put-attribute name="body" value="/WEB-INF/pages/user/taskview.jsp" />
 	</definition>
 	
 		<!-- Add Employee -->
-	<definition name="addEmployee" extends="DefaultTemplate">
-	    <put-attribute name="body" value="/WEB-INF/pages/addEmployee.jsp" />
+	<definition name="addEmployee" extends="adminView">
+	    <put-attribute name="body" value="/WEB-INF/pages/admin/addEmployee.jsp" />
 	</definition>
+	
+	<definition name="project" extends="adminView">
+    	<put-attribute name="body" value="/WEB-INF/pages/admin/project.jsp" />
+	</definition>
+	
+	<definition name="projectEdit" extends="adminView">
+    	<put-attribute name="body" value="/WEB-INF/pages/admin/project-add-edit.jsp" />
+	</definition>
+	
+	<definition name="userView" extends="DefaultTemplate">
+	    <put-attribute name="body" value="/WEB-INF/pages/user/user-dashboard.jsp" />
+	</definition>
+	
+	
 	
 	<!-- Assign Task -->
 	<definition name="assignTask" extends="DefaultTemplate">
-	    <put-attribute name="body" value="/WEB-INF/pages/assignTask.jsp" />
+	    <put-attribute name="body" value="/WEB-INF/pages/admin/assignTask.jsp" />
 	</definition>
+	
+	
 
 
 </tiles-definitions>

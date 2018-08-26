@@ -17,18 +17,6 @@ import javax.persistence.Table;
 @Table(name = "employee")
 public class Employee extends BaseModel {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Integer id;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	@Column(name = "first_name")
 	private String firstName;

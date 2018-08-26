@@ -37,27 +37,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.header {
-    padding: 20px;
-    text-align: center;
-    font-size: 35px;
-    color: white;
-}
-
-.article {
-    padding: 20px;
-    width: 100%;
-}
-
-/* Style the footer */
-.footer {
-	  position: absolute;
-	  right: 0;
-	  bottom: 0;
-	  left: 0;
-	  padding: 1rem;
-	  text-align: center;
-}
 
 table th{font-weight: bold;}
 
@@ -69,8 +48,12 @@ table th{font-weight: bold;}
 			<div class="header">
 			  <tiles:insertAttribute name="header" />
 			</div>
+			
+			<div class="w80p mauto menuPad">
+			  <tiles:insertAttribute name="menu" />
+			</div>
 
-			<div class="article">
+			<div class="w100p">
 				<tiles:insertAttribute name="body" />
 			</div>
 		

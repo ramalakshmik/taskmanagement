@@ -46,11 +46,6 @@
 	<h2 style="color:#0c5978;">Task Management System</h2>
 	<nav>
 		<p>
-			<div id="addEmp">
-				<a class="tbl-btn-assign" href="addEmployee">Add Employee</a>
-			</div>
-		</p>
-		<p>
 			<div id="logout">
 				<a class="tbl-btn-edit" href="logout">Logout</a>
 			</div>

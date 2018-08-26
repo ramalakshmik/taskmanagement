@@ -103,7 +103,7 @@ public class TaskController extends BaseController{
 			HttpServletResponse response) {
 		HttpSession session = TMSCommonUtil.getSession();
 		String projId = (String) session.getAttribute("projectId");
-		Project project = projectService.getProjectBy(Integer.parseInt(projId));
+		Project project = projectService.getProjectById(Integer.parseInt(projId));
 
 		String moduleId = (String) session.getAttribute("moduleId");
 		Module module = moduleService.getModuleBy(Integer.parseInt(moduleId));

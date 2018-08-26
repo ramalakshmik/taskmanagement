@@ -44,12 +44,6 @@
         <property name="password" value="${jdbc.password}"/> 
     </bean>
     
-    <tx:annotation-driven transaction-manager="transactionManager" />
-    <bean id="transactionManager"
-		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-    
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" >
         <property name="dataSource" ref="dataSource"/>
         <property name="hibernateProperties">
@@ -80,6 +74,12 @@
 	
 	<bean id="hTemplate" class="com.smi.tms.util.HibernateUtil">
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+    <bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 </beans>

@@ -1,3 +1,22 @@
+
+.header {
+    padding: 20px;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+}
+
+
+/* Style the footer */
+.footer {
+	  position: absolute;
+	  right: 0;
+	  bottom: 0;
+	  left: 0;
+	  padding: 1rem;
+	  text-align: center;
+}
+
 /* remove codrops styles and reset the whole thing */
 #container_demo{
 	 text-align: left;
@@ -396,7 +415,20 @@ p.change_link{
 .w100p{
 	width:100%;
 }
-
+.w80p{
+	width:80%;
+}
 .mt10p{
 	margin-top:10px
 }
+.mauto{
+	margin:auto;
+}
+.p20p{
+	padding:20px;
+}
+.menuPad{padding:10px 0 20px 0;}
+.fleft{float:left;}
+.fright{float:right;}
+.whiteTxt{color:#fff;}
+.tAlignCenter{text-align:center;}

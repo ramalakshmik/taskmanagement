@@ -1,6 +1,9 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:url var="taskURL" value="/task"/>
+
 <style>
 /* user */
 body {
@@ -115,7 +118,7 @@ tr:nth-child(even) {
 						<td>${task.assignBy.firstName}</td>
 						<td><fmt:formatDate value="${task.actualStartDate}" pattern="${pattern}" /></td>
 						<td><fmt:formatDate value="${task.actualEndDate}" pattern="${pattern}" /></td>
-						<td><form:form id="task_${task.id}" action="task/${task.id}"
+						<td><form:form id="task_${task.id}" action="${taskURL}/${task.id}"
 								method="GET">
 								<input type="submit" value="Edit" class="w50p">
 							</form:form></td>
