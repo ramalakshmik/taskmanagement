@@ -1,6 +1,5 @@
 package com.smi.tms.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -187,7 +185,7 @@ public class TaskController extends BaseController {
 		modelAndView.addObject("moduleList", modules);
 		return modelAndView;
 	}
-
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		/*SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

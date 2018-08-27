@@ -23,7 +23,7 @@
 	<h1 align="center" style="color: #0c5978">
 		<strong>Add Task</strong>
 	</h1>
-	<form:form method="POST" action="${saveTask}" modelAttribute="task">
+	<form:form method="POST" action="${saveTask}"  modelAttribute="task">
 		<table style="width: 80%" align="center">
 			<tr>
 				<td>Name :</td>
