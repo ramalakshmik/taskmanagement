@@ -11,13 +11,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.smi.tms.util.TMSCommonUtil;
 @Controller
 public class LogoutController {
 
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public void logout(HttpServletRequest request, HttpServletResponse response)
 	{
-		HttpSession httpSession=request.getSession();
+		HttpSession httpSession = TMSCommonUtil.getSession();
 		httpSession.invalidate();
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		try {

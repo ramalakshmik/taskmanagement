@@ -24,4 +24,15 @@ public class ProjectDAOImpl implements ProjectDAO {
 				Project.class, projectId);
 	}
 
+	@Override
+	public boolean saveOrUpdateProject(Project project) {
+		try {
+			HibernateUtil.getHibernateTemplate().saveOrUpdate(project);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+
+	}
+
 }

@@ -10,4 +10,6 @@ public interface ProjectDAO {
 
 	Project getProjectById(int projectId);
 
+	boolean saveOrUpdateProject(Project project);
+
 }

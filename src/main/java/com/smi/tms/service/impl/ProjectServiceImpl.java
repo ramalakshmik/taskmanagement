@@ -27,4 +27,10 @@ public class ProjectServiceImpl implements ProjectService {
 		return this.projectDAO.getProjectById(projectId);
 	}
 
+	@Override
+	@Transactional
+	public boolean saveOrUpdateProject(Project project) {
+		return projectDAO.saveOrUpdateProject(project);
+	}
+
 }
