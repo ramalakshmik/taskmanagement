@@ -12,6 +12,7 @@
 </script>
 
 <c:url var="saveTask" value="/task/saveTask"/>
+<c:url var="empList" value="/employeelist" />
 <div class="container">
 	<h1 align="center" style="color: #0c5978">
 		<strong>Add Task</strong>
@@ -20,7 +21,7 @@
 		<table style="width: 80%" align="center">
 			<tr>
 				<td>Name :</td>
-				<td><form:input type="text" path="title" /></td>
+				<td><form:input type="text" path="title" autocomplete="off"/></td>
 			</tr>
 			<tr>
 				<td>Project :</td>
@@ -38,23 +39,24 @@
 			</tr>
 			<tr>
 				<td>Description :</td>
-				<td><form:input type="text" path="taskDescription" /></td>
+				<td><form:input type="text" path="taskDescription" autocomplete="off"/></td>
 			</tr>
 			<tr>
 				<td>Start Date :</td>
 				<td><form:input id="datepicker1" type="text"
-						path="actualStartDate" /></td>
+						path="actualStartDate" autocomplete="off"/></td>
 			</tr>
 			<tr>
 				<td>End Date :</td>
 				<td><form:input id="datepicker2" type="text"
-						path="actualEndDate" /></td>
+						path="actualEndDate" autocomplete="off"/></td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<!-- <a href="saveTask" class="btn-save">Save</a> --> <input
+					<!-- <a href="saveTask" class="btn-save">Save</a> --> 
+					<input
 					path="" type="submit" width="100%" class="btn-save" value="Save" />
-					<input value="Cancel" class="btn-cancel">
+					<a class="btn-cancel textNone" href="${empList}">Back</a>
 				</td>
 			</tr>
 		</table>

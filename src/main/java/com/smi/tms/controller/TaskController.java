@@ -133,7 +133,11 @@ public class TaskController extends BaseController{
 	}
 
 	@RequestMapping(value="assignTask", method=RequestMethod.GET)
-	public ModelAndView showAssignForm() {
+	public ModelAndView showAssignForm(@RequestParam(value = "empId", required = true) Integer empId) {
+		HttpSession session = TMSCommonUtil.getSession();
+		Employee assignee = new Employee();
+		assignee.setId(empId);
+		session.setAttribute("assignee", assignee);
 		Task task = new Task();
 		ModelAndView modelAndView = new ModelAndView("assignTask", "command", task);
 		List<Project> projects = projectService.listAll();
