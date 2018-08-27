@@ -9,7 +9,7 @@
 </style>
 <c:url var="employeeList" value="/employeelist" />
 <c:url var="saveTask" value="/task/updateTask" />
-<div class="container">
+<div style="width:80%;"class="container">
 	<h3>Task Details</h3>
 	<form:form method="POST" action="${saveTask}" id="taskForm">
 		<form:input type="hidden" path="id"></form:input>
@@ -60,7 +60,7 @@
 			<tr>
 				<td colspan="2"><input type="submit" class="btn-save"
 					value="Save" /> <a class="btn-cancel textNone"
-					href="${employeeList}">back</a>
+					href="${employeeList}">Back</a>
 			</tr>
 		</table>
 	</form:form>
