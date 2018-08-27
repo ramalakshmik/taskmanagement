@@ -52,4 +52,5 @@ tr:nth-child(even) {
 			</tr>
 		</c:forEach>
 	</table>
+	
 </div>
