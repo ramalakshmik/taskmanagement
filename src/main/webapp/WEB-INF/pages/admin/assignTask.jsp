@@ -3,25 +3,31 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script>var ctx = "${pageContext.request.contextPath}"</script>
+<script>
+	var ctx = "${pageContext.request.contextPath}"
+</script>
 <script type="text/javascript">
- $(document).ready(function (){
-    $( "#datepicker1").datepicker();
-	$( "#datepicker2").datepicker();
-  } ); 
+	$(document).ready(function() {
+		$("#startDate").datepicker({
+			  dateFormat: "dd/mm/yy"
+		});
+		$("#endDate").datepicker({
+			  dateFormat: "dd/mm/yy"
+		});
+	});
 </script>
 
-<c:url var="saveTask" value="/task/saveTask"/>
+<c:url var="saveTask" value="/task/saveTask" />
 <c:url var="empList" value="/employeelist" />
 <div class="container">
 	<h1 align="center" style="color: #0c5978">
 		<strong>Add Task</strong>
 	</h1>
-	<form:form method="POST" action="${saveTask}">
+	<form:form method="POST" action="${saveTask}" modelAttribute="task">
 		<table style="width: 80%" align="center">
 			<tr>
 				<td>Name :</td>
-				<td><form:input type="text" path="title" autocomplete="off"/></td>
+				<td><form:input type="text" path="title" autocomplete="off" /></td>
 			</tr>
 			<tr>
 				<td>Project :</td>
@@ -39,26 +45,31 @@
 			</tr>
 			<tr>
 				<td>Description :</td>
-				<td><form:input type="text" path="taskDescription" autocomplete="off"/></td>
+				<td><form:input type="text" path="taskDescription"
+						autocomplete="off" /></td>
 			</tr>
 			<tr>
 				<td>Start Date :</td>
-				<td><form:input id="datepicker1" type="text"
-						path="actualStartDate" autocomplete="off"/></td>
+				<td>
+					<form:input id="startDate" type="text"
+						path="actualStartDate" autocomplete="off"/> 
+				</td>
 			</tr>
 			<tr>
 				<td>End Date :</td>
-				<td><form:input id="datepicker2" type="text"
-						path="actualEndDate" autocomplete="off"/></td>
+				<td><form:input id="endDate" type="text" path="actualEndDate"
+						autocomplete="off" /></td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<!-- <a href="saveTask" class="btn-save">Save</a> --> 
-					<input
+					<!-- <a href="saveTask" class="btn-save">Save</a> --> <input
 					path="" type="submit" width="100%" class="btn-save" value="Save" />
 					<a class="btn-cancel textNone" href="${empList}">Back</a>
 				</td>
 			</tr>
 		</table>
+		<div style="background-color: ${failure};">
+			<span> ${msg}</span>
+		</div>
 	</form:form>
 </div>

@@ -11,6 +11,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "task")
 public class Task extends BaseModel {
@@ -28,9 +30,11 @@ public class Task extends BaseModel {
 	@Column(name = "task_description")
 	private String taskDescription;
 
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "actual_start_date")
 	private Date actualStartDate;
 
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "actual_end_date")
 	private Date actualEndDate;
 

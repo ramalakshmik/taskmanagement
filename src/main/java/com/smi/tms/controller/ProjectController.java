@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.smi.tms.model.Project;
-import com.smi.tms.service.ModuleService;
 import com.smi.tms.service.ProjectService;
 
 @Controller

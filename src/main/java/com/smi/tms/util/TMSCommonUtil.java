@@ -1,14 +1,12 @@
 package com.smi.tms.util;
 
-import javax.servlet.http.HttpServletRequest;
-
-import com.smi.tms.model.Role;
-import com.smi.tms.model.User;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
+
+import com.smi.tms.model.Role;
+import com.smi.tms.model.User;
 
 public class TMSCommonUtil {
 
@@ -49,13 +47,13 @@ public class TMSCommonUtil {
 		return TMSCommonUtil.session;
 	}
 	
-	public static String getRole(HttpServletRequest request) {
-		User user = getUser(request);
+	public static String getRole() {
+		User user = TMSCommonUtil.getUser();
 		Role role2 = user.getRole().get(0);
 		return role2.getRole();
 	}
 	
-	public static User getUser(HttpServletRequest request) {
+	public static User getUser() {
 		User user = (User) session.getAttribute("user");
 		return user;
 	}

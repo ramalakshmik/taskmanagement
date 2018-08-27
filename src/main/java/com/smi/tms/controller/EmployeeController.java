@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.smi.tms.model.Employee;
-import com.smi.tms.model.Role;
 import com.smi.tms.model.Task;
 import com.smi.tms.model.User;
 import com.smi.tms.service.EmployeeService;
@@ -39,8 +38,8 @@ public class EmployeeController extends BaseController{
 	@RequestMapping(value = "/employeelist", method = RequestMethod.GET)
 	public ModelAndView showForm(HttpServletRequest request,
 			HttpServletResponse response) {
-		String role = TMSCommonUtil.getRole(request);
-		User user = TMSCommonUtil.getUser(request);
+		String role = TMSCommonUtil.getRole();
+		User user = TMSCommonUtil.getUser();
 		int empId = user.getEmployee().getId();
 		if (role != null && role.equalsIgnoreCase(Constants.PROJECT_MANAGER)) {
 			List<Employee> employeeList = employeeService
