@@ -161,10 +161,14 @@ public class TaskController extends BaseController {
 	public ModelAndView taskUpdate(@ModelAttribute("task") Task task, BindingResult bindingResult,
 			HttpServletRequest request, HttpServletResponse response) {
 		Task beforeTask = taskService.getTaskById(task.getId());
-		beforeTask.setReason(task.getReason());
+		beforeTask.setTitle(task.getTitle());
+		beforeTask.setTaskDescription(task.getTaskDescription());
+		beforeTask.setActualStartDate(task.getActualStartDate());
+		beforeTask.setActualEndDate(task.getActualEndDate());
+		beforeTask.setProject(task.getProject());
+		beforeTask.setModule(task.getModule());
 		beforeTask.setStatus(task.getStatus());
-		beforeTask.setUpdatedOn(new Date());
-		beforeTask.setActualStartDate(new Date());
+		beforeTask.setReason(task.getReason());
 		taskService.save(beforeTask);
 		return new ModelAndView("redirect:/employeelist");
 	}

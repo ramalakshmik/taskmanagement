@@ -2,6 +2,7 @@ package com.smi.tms.model;
 
 import java.util.Date;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -22,9 +25,13 @@ public class Task extends BaseModel {
 	private String title;
 
 	@OneToOne(fetch = FetchType.EAGER)
+	//@Cascade({CascadeType.MERGE})
+	@JoinColumn (name = "id")
 	private Module module;
 
 	@OneToOne(fetch = FetchType.EAGER)
+	//@Cascade({CascadeType.MERGE})
+	@JoinColumn (name = "id")
 	private Project project;
 
 	@Column(name = "task_description")
@@ -38,9 +45,11 @@ public class Task extends BaseModel {
 	@Column(name = "actual_end_date")
 	private Date actualEndDate;
 
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "expected_start_date")
 	private Date expectedStartDate;
 
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "expected_end_date")
 	private Date expectedEndDate;
 	

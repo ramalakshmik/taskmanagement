@@ -7,6 +7,16 @@
 	background-color: rgb(235, 235, 228);
 }
 </style>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#actualStartDate").datepicker({
+			  dateFormat: "dd/mm/yy"
+		});
+		$("#actualEndDate").datepicker({
+			  dateFormat: "dd/mm/yy"
+		});
+	});
+</script>
 <c:url var="employeeList" value="/employeelist" />
 <c:url var="saveTask" value="/task/updateTask" />
 <div style="width:80%;"class="container">
@@ -28,18 +38,37 @@
 			</tr>
 			<tr>
 				<td>Actual Start Date :</td>
-				<td><form:input type="text" path="actualStartDate" /></td>
+				<td><form:input type="text" path="actualStartDate" autocomplete="off" /></td>
 			</tr>
 			<tr>
+				<td>Actual End Date :</td>
+				<td><form:input type="text" path="actualEndDate" autocomplete="off"/></td>
+			</tr>
+			<!--  <tr>
 				<td>ExpectedStart Date :</td>
 				<td><form:input type="text" path="expectedStartDate" /></td>
 			</tr>
 			<tr>
 				<td>Expected End Date :</td>
 				<td><form:input type="text" path="expectedEndDate" /></td>
+			</tr> -->
+			
+			<tr>
+				<td>Project :</td>
+				<td><form:select path="project.projectName">
+						<form:options name="project" items="${projects}" itemValue="id"
+							itemLabel="projectName" />
+					</form:select></td>
+			</tr>
+			<tr>
+				<td>Module :</td>
+				<td><form:select path="module.moduleName">
+						<form:options name="module" items="${moduleList}" itemValue="id"
+							itemLabel="moduleName" />
+					</form:select></td>
 			</tr>
 
-			<tr>
+			<!--  <tr>
 				<td>Project :</td>
 				<td><form:input type="text" path="project.projectName" />
 				</td>
@@ -47,7 +76,7 @@
 			<tr>
 				<td>Module :</td>
 				<td><form:input type="text" path="module.moduleName" /></td>
-			</tr>
+			</tr> -->
 			<tr>
 				<td>Status :</td>
 				<td><form:select path="status" items="${statusMap}" /></td>
@@ -55,7 +84,7 @@
 			<tr>
 				<td>Reason :</td>
 				<td><form:textarea class="mt10p w100p"
-						path="project.projectName" rows="3" cols="50" /></td>
+						path="reason" rows="3" cols="50" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" class="btn-save"
