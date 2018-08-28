@@ -34,11 +34,12 @@ li a:hover:not(.active) {
 }
 </style>
 <c:url var="project" value="/project" />
+<c:url var="module" value="/module" />
 <c:url var="employeelist" value="/employeelist" />
 <div id="adminMenuContainer">
 	<ul>
 	  <li><a class="" href="${employeelist}">Employee</a></li>
 	  <li><a href="${project}/list">Project</a></li>
-	  <li><a href="">Contact</a></li>
+	  <li><a href="${module}/list">Module</a></li>
 	</ul>
 </div>

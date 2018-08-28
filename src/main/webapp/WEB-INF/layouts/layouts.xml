@@ -39,6 +39,14 @@
     	<put-attribute name="body" value="/WEB-INF/pages/admin/project-add-edit.jsp" />
 	</definition>
 	
+	<definition name="module" extends="adminView">
+    	<put-attribute name="body" value="/WEB-INF/pages/admin/module.jsp" />
+	</definition>
+	
+	<definition name="moduleEdit" extends="adminView">
+    	<put-attribute name="body" value="/WEB-INF/pages/admin/module-add-edit.jsp" />
+	</definition>
+	
 	<definition name="userView" extends="DefaultTemplate">
 	    <put-attribute name="body" value="/WEB-INF/pages/user/user-dashboard.jsp" />
 	</definition>

@@ -15,12 +15,24 @@ public class ModuleDAOImpl implements ModuleDAO {
 	@Override
 	public List<Module> listAll() {
 		return (List<Module>) HibernateUtil.getHibernateTemplate().find(
-				"FROM Module ");
+				"FROM Module where isActive = 1");
 	}
 
 	@Override
 	public Module getModuleBy(int moduleId) {
-		return (Module) HibernateUtil.getHibernateTemplate().get(Module.class, moduleId);
+		return (Module) HibernateUtil.getHibernateTemplate().get(Module.class,
+				moduleId);
 	}
 
+	@Override
+	public boolean saveOrUpdateModule(Module module) {
+		try {
+			HibernateUtil.getHibernateTemplate().saveOrUpdate(module);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
 }
