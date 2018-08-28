@@ -19,7 +19,7 @@
 </script>
 <c:url var="addProject" value="/project/addProject" />
 <c:url var="project" value="/project" />
-<div class="container">
+<div style="width:80%;" class="container">
 	<h3>Project Details</h3>
 	<form:form id="projectForm" modelAttribute="project" method="POST"
 		action="${addProject}">
@@ -49,7 +49,7 @@
 			<tr>
 				<td colspan="2"><input type="submit" class="btn-save"
 					value="Save" /> <a class="btn-cancel textNone"
-					href="${project}/list">back</a>
+					href="${project}/list">Back</a>
 			</tr>
 		</table>
 	</form:form>
