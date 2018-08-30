@@ -6,44 +6,43 @@
     <definition name="DefaultTemplate"  
       template="/WEB-INF/template/base-layout.jsp">
 			<put-attribute name="header" value="/WEB-INF/template/header.jsp" />
-			<put-attribute name="menu" value="" />
+			<put-attribute name="menu" value="/WEB-INF/pages/admin/admin-menu.jsp" />
 			<put-attribute name="body" value="" />
 			<!-- <put-attribute name="footer" value="/WEB-INF/template/footer.jsp" /> -->
 	</definition>
 	
     <!-- Views -->
     <definition name="adminView" extends="DefaultTemplate">
-    	<put-attribute name="menu" value="/WEB-INF/pages/admin/admin-menu.jsp" />
     	<put-attribute name="body" value="/WEB-INF/pages/admin/admin-dashboard.jsp" />
 	</definition>
 	
 	<!-- Task -->
-	<definition name="taskAddEdit" extends="adminView">
+	<definition name="taskAddEdit" extends="DefaultTemplate">
 	    <put-attribute name="body" value="/WEB-INF/pages/admin/taskedit.jsp" />
 	</definition>
 	
-	<definition name="taskView" extends="adminView">
+	<definition name="taskView" extends="DefaultTemplate">
 	    <put-attribute name="body" value="/WEB-INF/pages/user/taskview.jsp" />
 	</definition>
 	
 		<!-- Add Employee -->
-	<definition name="addEmployee" extends="adminView">
+	<definition name="addEmployee" extends="DefaultTemplate">
 	    <put-attribute name="body" value="/WEB-INF/pages/admin/addEmployee.jsp" />
 	</definition>
 	
-	<definition name="project" extends="adminView">
+	<definition name="project" extends="DefaultTemplate">
     	<put-attribute name="body" value="/WEB-INF/pages/admin/project.jsp" />
 	</definition>
 	
-	<definition name="projectEdit" extends="adminView">
+	<definition name="projectEdit" extends="DefaultTemplate">
     	<put-attribute name="body" value="/WEB-INF/pages/admin/project-add-edit.jsp" />
 	</definition>
 	
-	<definition name="module" extends="adminView">
+	<definition name="module" extends="DefaultTemplate">
     	<put-attribute name="body" value="/WEB-INF/pages/admin/module.jsp" />
 	</definition>
 	
-	<definition name="moduleEdit" extends="adminView">
+	<definition name="moduleEdit" extends="DefaultTemplate">
     	<put-attribute name="body" value="/WEB-INF/pages/admin/module-add-edit.jsp" />
 	</definition>
 	
@@ -51,14 +50,14 @@
 	    <put-attribute name="body" value="/WEB-INF/pages/user/user-dashboard.jsp" />
 	</definition>
 	
-	
-	
 	<!-- Assign Task -->
 	<definition name="assignTask" extends="DefaultTemplate">
 	    <put-attribute name="body" value="/WEB-INF/pages/admin/assignTask.jsp" />
 	</definition>
 	
-	
-
+	<!-- roleMenu -->
+	<definition name="roleMenu" extends="DefaultTemplate">
+	    <put-attribute name="body" value="/WEB-INF/pages/admin/roleMenu.jsp" />
+	</definition>
 
 </tiles-definitions>

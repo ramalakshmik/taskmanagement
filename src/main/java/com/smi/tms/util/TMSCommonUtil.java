@@ -47,10 +47,16 @@ public class TMSCommonUtil {
 		return TMSCommonUtil.session;
 	}
 	
-	public static String getRole() {
+	public static Role getRole() {
 		User user = TMSCommonUtil.getUser();
-		Role role2 = user.getRole().get(0);
-		return role2.getRole();
+		if(user !=null && user.getRole() !=null && user.getRole().size()>0) {
+			return user.getRole().get(0);
+		}
+		return null;
+	}
+	
+	public static String getRoleName() {
+		return getRole().getRole();
 	}
 	
 	public static User getUser() {

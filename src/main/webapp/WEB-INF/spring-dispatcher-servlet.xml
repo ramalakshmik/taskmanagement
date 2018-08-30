@@ -54,7 +54,7 @@
                <!--  <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop> -->
             </props>
         </property>       
-        <property name="annotatedClasses">
+       <!--  <property name="annotatedClasses">
 			<list>
 				<value>com.smi.tms.model.User</value>
 				<value>com.smi.tms.model.Employee</value>
@@ -64,7 +64,8 @@
 				<value>com.smi.tms.model.Project</value>
 				<value>com.smi.tms.model.Role</value>
 			</list>
-		</property>
+		</property> -->
+		<property name="packagesToScan" value="com.smi.tms.model"/>
     </bean>
     
     <bean id="hibernateTemplate"

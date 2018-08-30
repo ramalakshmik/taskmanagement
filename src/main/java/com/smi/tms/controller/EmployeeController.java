@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.smi.tms.model.Authorization;
 import com.smi.tms.model.Employee;
 import com.smi.tms.model.Task;
 import com.smi.tms.model.User;
 import com.smi.tms.service.EmployeeService;
 import com.smi.tms.service.ModuleService;
 import com.smi.tms.service.ProjectService;
+import com.smi.tms.service.AuthorizationService;
 import com.smi.tms.util.Constants;
 import com.smi.tms.util.TMSCommonUtil;
 
@@ -34,19 +36,32 @@ public class EmployeeController extends BaseController{
 	
 	@Autowired
 	ModuleService moduleService;
+	
+	@Autowired
+	AuthorizationService autherizationService;
 
 	@RequestMapping(value = "/employeelist", method = RequestMethod.GET)
 	public ModelAndView showForm(HttpServletRequest request,
 			HttpServletResponse response) {
-		String role = TMSCommonUtil.getRole();
+		List<Authorization> menuList = null;
+		String role = TMSCommonUtil.getRoleName();
 		User user = TMSCommonUtil.getUser();
 		int empId = user.getEmployee().getId();
+		
+		//Get Authorization by role id
+		if(TMSCommonUtil.getRole() !=null) {
+			Integer roleId = TMSCommonUtil.getRole().getId() ;
+			menuList = autherizationService.getAuthorizationByRoleId(roleId );
+			request.getSession().setAttribute("menuList", menuList);
+		}
+		
+		
 		if (role != null && role.equalsIgnoreCase(Constants.PROJECT_MANAGER)) {
 			List<Employee> employeeList = employeeService
 					.getEmployeeListByReportingToId(empId);
-			/* request.getSession().setAttribute("employeeList", employeeList); */
 			ModelAndView modelAndView = new ModelAndView("adminView");
 			modelAndView.addObject("employeeList", employeeList);
+			modelAndView.addObject("authorizationList",menuList);
 			return modelAndView;
 		} else {
 			List<Task> taskList = employeeService.getTaskListByEmpId(empId);
@@ -54,6 +69,7 @@ public class EmployeeController extends BaseController{
 			ModelAndView modelAndView = new ModelAndView("userView", "command",
 					task);
 			modelAndView.addObject("taskList", taskList);
+			modelAndView.addObject("authorizationList",menuList);
 			return modelAndView;
 		}
 

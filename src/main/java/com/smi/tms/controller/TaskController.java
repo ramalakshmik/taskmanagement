@@ -64,7 +64,7 @@ public class TaskController extends BaseController {
 		String pageName;
 		Task task = taskService.getTaskById(taskId);
 
-		String role = TMSCommonUtil.getRole();
+		String role = TMSCommonUtil.getRoleName();
 
 		if (role != null && role.equalsIgnoreCase(Constants.PROJECT_MANAGER)) {
 			pageName = "taskAddEdit";
