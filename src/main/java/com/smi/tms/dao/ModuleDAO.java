@@ -11,5 +11,7 @@ public interface ModuleDAO {
 	Module getModuleBy(int moduleId);
 
 	boolean saveOrUpdateModule(Module module);
+	
+	List<Module> getModulesByProjectId(int projectId);
 
 }

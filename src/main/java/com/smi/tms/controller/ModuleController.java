@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.smi.tms.model.Module;
+import com.smi.tms.model.Project;
 import com.smi.tms.service.ModuleService;
+import com.smi.tms.service.ProjectService;
 
 @Controller
 @RequestMapping(value = "/module")
@@ -21,10 +23,15 @@ public class ModuleController {
 	@Autowired
 	ModuleService moduleService;
 
+	@Autowired
+	ProjectService projectService;
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView moduleList() {
 		ModelAndView modelAndView = new ModelAndView("module");
 		List<Module> modules = moduleService.listAll();
+		List<Project> projects = projectService.listAll();
+		modelAndView.addObject("projects", projects);
 		modelAndView.addObject("moduleList", modules);
 		return modelAndView;
 	}
