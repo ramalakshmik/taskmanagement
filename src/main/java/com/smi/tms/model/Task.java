@@ -25,13 +25,13 @@ public class Task extends BaseModel {
 	private String title;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	//@Cascade({CascadeType.MERGE})
-	@JoinColumn (name = "id")
+//	@Cascade({CascadeType.MERGE})
+	@JoinColumn (name = "module_id")
 	private Module module;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	//@Cascade({CascadeType.MERGE})
-	@JoinColumn (name = "id")
+//	@Cascade({CascadeType.MERGE})
+	@JoinColumn (name = "project_id")
 	private Project project;
 
 	@Column(name = "task_description")

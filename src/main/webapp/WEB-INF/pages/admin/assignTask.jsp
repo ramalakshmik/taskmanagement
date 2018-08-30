@@ -31,17 +31,19 @@
 			</tr>
 			<tr>
 				<td>Project :</td>
-				<td><form:select path="project">
-						<form:options name="project" items="${projects}" itemValue="id"
+				<%-- <td><form:select path="project">
+						<form:options name="project" items="${projectList}" itemValue="id"
 							itemLabel="projectName" />
-					</form:select></td>
+					</form:select></td> --%>
+					<td><form:select path="project.id" items="${projectList}" /></td>
 			</tr>
 			<tr>
 				<td>Module :</td>
-				<td><form:select path="module">
-						<form:options name="project" items="${moduleList}" itemValue="id"
+				<%-- <td><form:select path="module">
+						<form:options name="module" items="${moduleList}" itemValue="id"
 							itemLabel="moduleName" />
-					</form:select></td>
+					</form:select></td> --%>
+					<td><form:select path="module.id" items="${moduleList}" /></td>
 			</tr>
 			<tr>
 				<td>Description :</td>

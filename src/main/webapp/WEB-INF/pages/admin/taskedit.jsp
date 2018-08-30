@@ -55,14 +55,14 @@
 			
 			<tr>
 				<td>Project :</td>
-				<td><form:select path="project.projectName">
+				<td><form:select path="project.id">
 						<form:options name="project" items="${projects}" itemValue="id"
 							itemLabel="projectName" />
 					</form:select></td>
 			</tr>
 			<tr>
 				<td>Module :</td>
-				<td><form:select path="module.moduleName">
+				<td><form:select path="module.id">
 						<form:options name="module" items="${moduleList}" itemValue="id"
 							itemLabel="moduleName" />
 					</form:select></td>
