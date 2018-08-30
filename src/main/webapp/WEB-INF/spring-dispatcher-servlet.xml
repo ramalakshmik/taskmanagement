@@ -15,6 +15,7 @@
 
 	<context:component-scan base-package="com.smi.tms"></context:component-scan>
 	<context:component-scan base-package="com.smi.tms.model"></context:component-scan>
+	<context:component-scan base-package="com.smi.tms.formatter"></context:component-scan>
 	<mvc:annotation-driven/>
 	
 	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -82,5 +83,25 @@
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<!-- <bean id="projectConverter" class="com.smi.tms.formatter.ProjectConverter"></bean> -->
+	
+	<!-- <bean id="conversionService"
+	class="org.springframework.context.support.ConversionServiceFactoryBean">
+	<property name="converters">
+		<set>
+			<ref bean="projectConverter" />
+		</set>
+	</property>
+</bean> -->
+
+<bean id="conversionService"
+      class="org.springframework.context.support.ConversionServiceFactoryBean">
+    <property name="converters">
+        <list>
+            <bean class="com.smi.tms.formatter.ProjectConverter"/>
+        </list>
+    </property>
+</bean>
 
 </beans>

@@ -14,7 +14,7 @@ import com.smi.tms.model.Project;
 
 public class BaseController {
 	
-	@InitBinder
+	/*@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Project.class, new ProjectConverter());
 		binder.registerCustomEditor(Module.class, new ModuleConverter());
@@ -23,6 +23,6 @@ public class BaseController {
 	    dateFormat.setLenient(false);
 	    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	    
-	}
+	}*/
 
 }

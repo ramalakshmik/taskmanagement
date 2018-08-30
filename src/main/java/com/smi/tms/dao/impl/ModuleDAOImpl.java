@@ -35,4 +35,11 @@ public class ModuleDAOImpl implements ModuleDAO {
 		}
 
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Module> getModulesByProjectId(int projectId) {
+		return (List<Module>) HibernateUtil.getHibernateTemplate().find(
+				"FROM Project where isActive = 1 and project_id=?", projectId);
+	}
 }
