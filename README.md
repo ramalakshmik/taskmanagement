@@ -615,5 +615,17 @@ ADD COLUMN end_date DATETIME NULL AFTER `start_date`;
 
 update project set start_date=now(),end_date=now();
 
+-- Authorization
 
+CREATE TABLE authorization ( id INT NOT NULL AUTO_INCREMENT, role_id INT NOT NULL, menu VARCHAR(50) NULL, actions VARCHAR(45) NULL,method varchar(10), is_active TINYINT NULL, created_by VARCHAR(20) NULL, created_on DATETIME NULL, updated_by VARCHAR(20) NULL, updated_on DATETIME NULL, PRIMARY KEY (id),  CONSTRAINT fk_role_id FOREIGN KEY (role_id) REFERENCES tmsdb.Role (id) ON DELETE NO ACTION ON UPDATE NO ACTION);
+
+ALTER TABLE authorization 
+ADD COLUMN sort_id int(5) Not Null AFTER method;
+
+INSERT INTO authorization VALUES(1,1,'Employee','/employeelist','GET',1,1,'System',now(),null,null);
+INSERT INTO authorization VALUES(2,1,'Project','/project','GET',2,1,'System',now(),null,null);
+INSERT INTO authorization VALUES(3,1,'Module','/module','GET',3,1,'System',now(),null,null);
+
+INSERT INTO authorization VALUES(4,2,'Employee','/employeelist','GET',1,1,'System',now(),null,null);
+INSERT INTO authorization VALUES(5,2,'Project','/project','GET',2,1,'System',now(),null,null);
 
