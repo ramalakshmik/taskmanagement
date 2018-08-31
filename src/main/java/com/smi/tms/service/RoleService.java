@@ -1,10 +1,12 @@
 package com.smi.tms.service;
 
 import java.util.List;
+import java.util.Map;
 
+import com.smi.tms.model.Authorization;
 import com.smi.tms.model.Role;
 
 public interface RoleService {
 
-	List<Role> getRole();
+	Map<Role,List<Authorization>> getRole();
 }

@@ -1,4 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
 	table {
 	font-family: arial, sans-serif;
@@ -16,6 +19,7 @@ tr:nth-child(even) {
 	background-color: #dddddd;
 }
 </style>
+<c:url var="editRoleAuth" value="/authorization/edit"/>
 <div>
 	<table style="width: 80%;" align="center">
 		<tr style="background-color:#0c5978;color:white;">
@@ -23,11 +27,12 @@ tr:nth-child(even) {
 			<th>Menu</th>
 			<th>Action</th>
 			
-			<c:forEach var="role" items="${roleList}">
+			<c:forEach var="entry" items="${roleAuthMap}">
+				<c:set var="role" scope="session" value="${entry.key}"></c:set>
 				<tr>
-					<td>${role.role }</td>
+					<td>${role.role}</td>
 					<td>
-						<c:forEach var="menu" items="${role.authorizationList}" varStatus="index">
+						<c:forEach var="menu" items="${entry.value}" varStatus="index">
 							<div style="float: left;padding-right:5px">
 								${menu.menu} 
 								<c:if test="${!index.last}">,</c:if>
@@ -36,12 +41,15 @@ tr:nth-child(even) {
 						
 					</td>
 					<td>
-						<a
+						<!-- <a
 					style="color: white; text-align: center; padding: 3px; border-radius: 4px; font-size: 15px; cursor: pointer; text-decoration: none;"
-					class="tbl-btn-edit" href="">Edit</a>
+					class="tbl-btn-edit" href="">Edit</a> -->
+						  <form:form action="${editRoleAuth}/${role.id}" modelAttribute="role" method="POST">
+						 	<input type="submit" value="Edit">
+						 </form:form>
 					</td>
 				</tr>
-			</c:forEach>
+			</c:forEach> 
 			
 		</tr>
 	</table>

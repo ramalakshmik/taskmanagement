@@ -59,5 +59,9 @@
 	<definition name="roleMenu" extends="DefaultTemplate">
 	    <put-attribute name="body" value="/WEB-INF/pages/admin/roleMenu.jsp" />
 	</definition>
+	
+	<definition name="roleMenuEdit" extends="DefaultTemplate">
+	    <put-attribute name="body" value="/WEB-INF/pages/admin/roleMenuEdit.jsp" />
+	</definition>
 
 </tiles-definitions>
