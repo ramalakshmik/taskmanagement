@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,9 @@ public class Role extends BaseModel{
 	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="role_id")
 	private List<Authorization> authorizationList;
+	
+	@Transient
+	private List<String> menuList;
 	
 	
 	public List<Authorization> getAuthorizationList() {
@@ -48,6 +52,14 @@ public class Role extends BaseModel{
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public List<String> getMenuList() {
+		return menuList;
+	}
+
+	public void setMenuList(List<String> menuList) {
+		this.menuList = menuList;
 	}
 
 

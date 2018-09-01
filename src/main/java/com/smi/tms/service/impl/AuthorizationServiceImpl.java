@@ -22,4 +22,10 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 		return authorizationList.stream().sorted((a1,a2) -> a1.getSortOrder()-a2.getSortOrder()).collect(Collectors.toList());
 	}
 
+	@Override
+	public void saveAuthorization(Authorization auth) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

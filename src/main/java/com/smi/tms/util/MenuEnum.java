@@ -2,7 +2,7 @@ package com.smi.tms.util;
 
 public enum MenuEnum {
 	
-	EMPLOYEE("Employee"),PROJECT("Project"),MODULE("Module");
+	EMPLOYEE("Employee"),PROJECT("Project"),MODULE("Module"),ROLE("Role");
 	
 	 private String menu;
 	

@@ -20,7 +20,7 @@ tr:nth-child(even) {
 }
 </style>
 <c:url var="editRoleAuth" value="/authorization/edit"/>
-<div>
+<%-- <div>
 	<table style="width: 80%;" align="center">
 		<tr style="background-color:#0c5978;color:white;">
 			<th>Role</th>
@@ -32,25 +32,63 @@ tr:nth-child(even) {
 				<tr>
 					<td>${role.role}</td>
 					<td>
-						<c:forEach var="menu" items="${entry.value}" varStatus="index">
+						 <c:forEach var="menu" items="${entry.value}" varStatus="index">
 							<div style="float: left;padding-right:5px">
 								${menu.menu} 
 								<c:if test="${!index.last}">,</c:if>
 							</div>
 						</c:forEach>
-						
 					</td>
 					<td>
-						<!-- <a
+						 <a
 					style="color: white; text-align: center; padding: 3px; border-radius: 4px; font-size: 15px; cursor: pointer; text-decoration: none;"
-					class="tbl-btn-edit" href="">Edit</a> -->
-						  <form:form action="${editRoleAuth}/${role.id}" modelAttribute="role" method="POST">
-						 	<input type="submit" value="Edit">
-						 </form:form>
+					class="tbl-btn-edit" href="${editRoleAuth}/${role.id}">Edit</a> 
 					</td>
 				</tr>
 			</c:forEach> 
 			
 		</tr>
 	</table>
+</div> --%>
+
+<div>
+<form:form modelAttribute="roleDto" action="${editRoleAuth}" method="POST">
+	<table style="width: 80%;" align="center">
+		<tr style="background-color:#0c5978;color:white;">
+			<th>Role</th>
+			<th>Menu</th>
+			<th>Action</th>
+			
+			<c:forEach var="role" items="${roleDto.roleList}" varStatus="status">
+			
+				<tr>
+					<td>${role.role}</td>
+					 <td>
+						 <%-- <c:forEach var="menu" items="${entry.value}" varStatus="index">
+							<div style="float: left;padding-right:5px">
+								${menu.menu} 
+								<c:if test="${!index.last}">,</c:if>
+							</div>
+						</c:forEach> --%>
+						 <form:select path="roleList[${status.index}].menuList" items="${menuMap}" multiple="true" /> 
+						<%-- <form:select path="role.id">
+						<form:options name="autho" items="${menuMap}" itemValue="id"
+							itemLabel="menu" /> 
+					</form:select>--%>
+						
+					</td> 
+					<td>
+						<%--  <a
+					style="color: white; text-align: center; padding: 3px; border-radius: 4px; font-size: 15px; cursor: pointer; text-decoration: none;"
+					class="tbl-btn-edit" href="${editRoleAuth}/${role.id}">Edit</a>  --%>
+					
+					</td>
+				</tr>
+			</c:forEach>
+			<tr>
+				<td><input type="submit" value="Save"></td>
+			</tr>
+			 
+	</table>
+	</form:form>
 </div>

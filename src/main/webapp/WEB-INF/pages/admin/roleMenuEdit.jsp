@@ -6,29 +6,35 @@
 .readOnly {
 	background-color: rgb(235, 235, 228);
 }
+<style>
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+	border: 2px solid #dddddd;
+	text-align: left;
+	padding: 7px;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
 </style>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#actualStartDate").datepicker({
-			  dateFormat: "dd/mm/yy"
-		});
-		$("#actualEndDate").datepicker({
-			  dateFormat: "dd/mm/yy"
-		});
-	});
-</script>
-<c:url var="saveTask" value="/task/updateTask" />
-<div style="width:80%;"class="container">
+<c:url var="saveTask" value="/authorization/save" />
+<div style="width:50%;"class="container">
 	<h3>Role Management</h3>
-	 <form:form id="taskForm" modelAttribute="role">
+	 <form:form id="taskForm" action="" method="" modelAttribute="role">
 		<table style="width: 80%" align="center">
 			<tr>
 				<td>Role :</td>
-				<td><form:input type="text" path="role" /></td>
+				<td>${role.role}</td>
 			</tr>
 			<tr>
 				<td>Menu :</td>
-				<td><%-- <form:select path="status" items="${statusMap}" /> --%></td>
+				<td> <form:select path="authorizationList" multiple="true" items="${menuMap}" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" class="btn-save"

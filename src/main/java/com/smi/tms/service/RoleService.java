@@ -9,4 +9,8 @@ import com.smi.tms.model.Role;
 public interface RoleService {
 
 	Map<Role,List<Authorization>> getRole();
+	
+	List<Role> getAllRole();
+	
+	Role getRoleById(Integer roleId);
 }

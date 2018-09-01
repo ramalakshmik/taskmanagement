@@ -35,4 +35,22 @@ public class RoleServiceImpl implements RoleService{
 		return roleAuthMap;
 	}
 
+	@Override
+	public Role getRoleById(Integer roleId) {
+		return roleDao.getRoleById(roleId).get(0);
+	}
+
+	@Override
+	public List<Role> getAllRole() {
+		List<Role> roleList = roleDao.getRole();
+		for(Role role:roleList){
+			List<Authorization> authorizationList = role.getAuthorizationList();
+			List<String> menuString = authorizationList.stream().map(x -> x.getMenu().toUpperCase()).collect(Collectors.toList());
+			role.setMenuList(menuString);
+		}
+		
+		System.out.println("role >>>> "+new Gson().toJson(roleList));
+		return roleList;
+	}
+
 }

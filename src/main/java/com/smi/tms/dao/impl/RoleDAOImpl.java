@@ -16,4 +16,10 @@ public class RoleDAOImpl implements RoleDAO{
 		return (List<Role>) HibernateUtil.getHibernateTemplate().find("FROM Role where isActive=1");
 	}
 
+	@Override
+	public List<Role> getRoleById(Integer roleId) {
+		
+		return  (List<Role>) HibernateUtil.getHibernateTemplate().find("FROM Role where id=? and isActive=1",roleId);
+	}
+
 }

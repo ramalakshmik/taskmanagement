@@ -7,5 +7,7 @@ import com.smi.tms.model.Authorization;
 public interface AuthorizationService {
 	
 	List<Authorization> getAuthorizationByRoleId(Integer roleId);
+	
+	void saveAuthorization(Authorization auth);
 
 }
