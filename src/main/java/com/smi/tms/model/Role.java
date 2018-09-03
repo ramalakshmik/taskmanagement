@@ -8,6 +8,7 @@ import javax.persistence.Table;
 @Table(name = "role")
 public class Role extends BaseModel{
 	
+	
 	@Column(name = "role")
 	private String role;
 	
