@@ -23,23 +23,25 @@ tr:nth-child(even) {
 	background-color: #dddddd;
 }
 </style>
-<c:url var="saveTask" value="/authorization/save" />
-<div style="width:50%;"class="container">
+<c:url var="saveMenu" value="/authorization/save" />
+<c:url var="authList" value="/authorization/list"/>
+<div style="width:80%;"class="container">
 	<h3>Role Management</h3>
-	 <form:form id="taskForm" action="" method="" modelAttribute="role">
+	 <form:form id="taskForm" method="POST" action="${saveMenu}" modelAttribute="role">
 		<table style="width: 80%" align="center">
+			<form:input type="hidden" path="id" />
 			<tr>
 				<td>Role :</td>
 				<td>${role.role}</td>
 			</tr>
 			<tr>
 				<td>Menu :</td>
-				<td> <form:select path="authorizationList" multiple="true" items="${menuMap}" /></td>
+				<td> <form:select path="menuList" multiple="true" items="${menuMap}" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" class="btn-save"
-					value="Save" /> <a class="btn-cancel textNone"
-					href="">Back</a>
+				<td colspan="2">
+					<input type="submit" class="btn-save" value="Save" /> 
+					<a style=" text-align: center; " class="btn-cancel textNone" href="${authList}">Back</a>
 			</tr>
 		</table>
 	</form:form> 

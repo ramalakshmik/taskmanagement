@@ -9,5 +9,9 @@ public interface AuthorizationService {
 	List<Authorization> getAuthorizationByRoleId(Integer roleId);
 	
 	void saveAuthorization(Authorization auth);
+	
+	void deleteAuthByRoleId(Integer roleId);
+
+	void updateAuthList(Integer roleId,List<String> updatedMenu); 
 
 }

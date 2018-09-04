@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Where;
 import org.springframework.transaction.annotation.Transactional;
 
 @Entity
@@ -24,6 +25,7 @@ public class Role extends BaseModel{
 	
 	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="role_id")
+	@Where(clause="is_active=1")
 	private List<Authorization> authorizationList;
 	
 	@Transient

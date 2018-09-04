@@ -37,20 +37,31 @@ public class RoleServiceImpl implements RoleService{
 
 	@Override
 	public Role getRoleById(Integer roleId) {
-		return roleDao.getRoleById(roleId).get(0);
+		Role role = roleDao.getRoleById(roleId).get(0);
+		setMenuDropdown(role);
+		return role;
 	}
 
 	@Override
 	public List<Role> getAllRole() {
 		List<Role> roleList = roleDao.getRole();
-		for(Role role:roleList){
-			List<Authorization> authorizationList = role.getAuthorizationList();
-			List<String> menuString = authorizationList.stream().map(x -> x.getMenu().toUpperCase()).collect(Collectors.toList());
-			role.setMenuList(menuString);
-		}
 		
-		System.out.println("role >>>> "+new Gson().toJson(roleList));
+		for(Role role:roleList)
+			setMenuDropdown(role);
+		
 		return roleList;
+	}
+	
+	/**
+	 * Method to set Drop down values 
+	 * @param role 
+	 * @return role
+	 */
+	public Role setMenuDropdown(Role role) {
+		List<Authorization> authorizationList = role.getAuthorizationList();
+		List<String> menuString = authorizationList.stream().map(x -> x.getMenu().toUpperCase()).collect(Collectors.toList());
+		role.setMenuList(menuString);
+		return role;
 	}
 
 }
