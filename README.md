@@ -648,3 +648,11 @@ VALUES ('TL','TeamLead','TL',1);
 update user_role set role_id=2 where user_id in (3,4);
 update user_role set role_id=3 where user_id in (5,6);
 update user_role set role_id=4 where user_id in (7,8);
+
+
+ALTER TABLE tmsdb.role ADD COLUMN sort_order int(5) NULL AFTER role;
+
+update role set sort_order=1 where id=3;  -- admin
+update role set sort_order=2 where id=1;  -- PM
+update role set sort_order=3 where id=4;  -- TL
+update role set sort_order=4 where id=2;  -- DEV
