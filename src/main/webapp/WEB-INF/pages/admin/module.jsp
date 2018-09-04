@@ -38,7 +38,9 @@ tr:nth-child(even) {
 			<tr>
 				<td>${module.moduleName}</td>
 				<td>${module.moduleDesc}</td>
-				<td class="tAlignCenter"><a href="${moduleUrl}/${module.id}">Edit</a></td>
+				<td class="tAlignCenter"><a
+					style="color: white; text-align: center; padding: 3px; border-radius: 4px; font-size: 15px; cursor: pointer; text-decoration: none;"
+					class="tbl-btn-edit" href="${moduleUrl}/${module.id}">Edit</a></td>
 			</tr>
 		</c:forEach>
 	</table>
