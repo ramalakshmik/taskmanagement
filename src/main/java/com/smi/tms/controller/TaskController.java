@@ -146,6 +146,7 @@ public class TaskController extends BaseController {
 		beforeTask.setTaskDescription(task.getTaskDescription());
 		beforeTask.setActualStartDate(task.getActualStartDate());
 		beforeTask.setActualEndDate(task.getActualEndDate());
+		beforeTask.setPostponedEndDate(task.getPostponedEndDate());
 		beforeTask.setProject(task.getProject());
 		beforeTask.setModule(task.getModule());
 		beforeTask.setStatus(task.getStatus());
@@ -163,6 +164,7 @@ public class TaskController extends BaseController {
 		/*Task task = new Task();*/
 		task.setActualStartDate(new Date());
 		task.setActualEndDate(new Date());
+		task.setPostponedEndDate(new Date());
 		ModelAndView modelAndView = new ModelAndView("assignTask");
 		this.projects = projectService.listAll();
 		this.modules = moduleService.listAll();

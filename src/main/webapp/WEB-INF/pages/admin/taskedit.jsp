@@ -15,6 +15,9 @@
 		$("#actualEndDate").datepicker({
 			  dateFormat: "dd/mm/yy"
 		});
+		$("#postponedEndDate").datepicker({
+			  dateFormat: "dd/mm/yy"
+		});
 	});
 </script>
 <c:url var="employeeList" value="/employeelist" />
@@ -25,6 +28,7 @@
 		<form:input type="hidden" path="id"></form:input>
 		<table style="width: 80%" align="center">
 			<tr>
+			
 				<td>Title :</td>
 				<td><form:input type="text" path="title" /></td>
 			</tr>
@@ -37,12 +41,16 @@
 				<td><form:input type="text" path="assignBy.firstName" /></td>
 			</tr>
 			<tr>
-				<td>Actual Start Date :</td>
+				<td>Start Date :</td>
 				<td><form:input type="text" path="actualStartDate" autocomplete="off" /></td>
 			</tr>
 			<tr>
-				<td>Actual End Date :</td>
+				<td>End Date :</td>
 				<td><form:input type="text" path="actualEndDate" autocomplete="off"/></td>
+			</tr>
+			<tr>
+				<td>PostPonded End Date :</td>
+				<td><form:input type="text" path="postponedEndDate" autocomplete="off"/></td>
 			</tr>
 			<!--  <tr>
 				<td>ExpectedStart Date :</td>

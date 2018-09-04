@@ -53,6 +53,10 @@ public class Task extends BaseModel {
 	@Column(name = "expected_end_date")
 	private Date expectedEndDate;
 	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "postponded_end_date")
+	private Date postponedEndDate;
+	
 	@Column(name = "status")
 	private Integer status;
 
@@ -165,6 +169,14 @@ public class Task extends BaseModel {
 
 	public void setExpectedEndDate(Date expectedEndDate) {
 		this.expectedEndDate = expectedEndDate;
+	}
+
+	public Date getPostponedEndDate() {
+		return postponedEndDate;
+	}
+
+	public void setPostponedEndDate(Date postponedEndDate) {
+		this.postponedEndDate = postponedEndDate;
 	}
 
 	public String getStatusColor() {
