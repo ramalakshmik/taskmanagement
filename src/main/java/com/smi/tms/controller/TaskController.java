@@ -54,9 +54,6 @@ public class TaskController extends BaseController {
 
 	private List<Module> modules;
 	
-	/*@Autowired
-	ConversionService conversionService;*/
-
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView getTask(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("id") Integer taskId) {
@@ -182,11 +179,11 @@ public class TaskController extends BaseController {
 		return modelAndView;
 	}
 	
-	@ModelAttribute(name = "projects")
+	/*@ModelAttribute(name = "projects")
 	public List<Project> populateProject() {
 		List<Project> projs = new ArrayList<Project>();
 		projs = projectService.listAll();
 		return projs;
-	}
+	}*/
 	
 }

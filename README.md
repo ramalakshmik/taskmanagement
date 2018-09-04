@@ -622,10 +622,12 @@ CREATE TABLE authorization ( id INT NOT NULL AUTO_INCREMENT, role_id INT NOT NUL
 ALTER TABLE authorization 
 ADD COLUMN sort_id int(5) Not Null AFTER method;
 
-INSERT INTO authorization VALUES(1,1,'Employee','/employeelist','GET',1,1,'System',now(),null,null);
-INSERT INTO authorization VALUES(2,1,'Project','/project','GET',2,1,'System',now(),null,null);
-INSERT INTO authorization VALUES(3,1,'Module','/module','GET',3,1,'System',now(),null,null);
+INSERT INTO authorization VALUES(1,1,'EMPLOYEE','/employeelist','GET',1,1,'System',now(),null,null);
+INSERT INTO authorization VALUES(2,1,'PROJECT','/project/list','GET',2,1,'System',now(),null,null);
+INSERT INTO authorization VALUES(3,1,'MODULE','/module/list','GET',3,1,'System',now(),null,null);
+INSERT INTO authorization VALUES(4,1,'ROLE','/authorization/list','GET',3,1,'System',now(),null,null);
 
-INSERT INTO authorization VALUES(4,2,'Employee','/employeelist','GET',1,1,'System',now(),null,null);
-INSERT INTO authorization VALUES(5,2,'Project','/project','GET',2,1,'System',now(),null,null);
+INSERT INTO authorization VALUES(5,2,'EMPLOYEE','/employeelist','GET',1,1,'System',now(),null,null);
+INSERT INTO authorization VALUES(6,2,'PROJECT','/project/list','GET',2,1,'System',now(),null,null);
+
 
