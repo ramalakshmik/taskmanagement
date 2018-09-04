@@ -32,4 +32,9 @@ public class ModuleServiceImpl implements ModuleService {
 		return moduleDAO.saveOrUpdateModule(module);
 	}
 
+	@Override
+	public Module getById(int moduleId) {
+		return moduleDAO.getById(moduleId);
+	}
+
 }

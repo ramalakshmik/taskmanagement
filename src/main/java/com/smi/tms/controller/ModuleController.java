@@ -1,6 +1,9 @@
 package com.smi.tms.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +29,8 @@ public class ModuleController {
 	@Autowired
 	ProjectService projectService;
 
+	private Map<Integer, Project> projectMap;
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView moduleList() {
 		ModelAndView modelAndView = new ModelAndView("module");
@@ -38,7 +43,7 @@ public class ModuleController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView moduleById(@PathVariable("id") Integer moduleId) {
-		Module module = moduleService.getModuleBy(moduleId);
+		Module module = moduleService.getById(moduleId);
 		ModelAndView modelAndView = new ModelAndView("moduleEdit");
 		modelAndView.addObject("module", module);
 		return modelAndView;
@@ -47,16 +52,24 @@ public class ModuleController {
 	@RequestMapping(value = "/addModule", method = RequestMethod.GET)
 	public ModelAndView addModule() {
 		Module module = new Module();
-		ModelAndView modelAndView = new ModelAndView("moduleEdit", "module",
-				module);
+		ModelAndView modelAndView = new ModelAndView("moduleEdit", "module", module);
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/addModule", method = RequestMethod.POST)
-	public ModelAndView updateModuleById(
-			@ModelAttribute("module") Module module, BindingResult bindingResult) {
+	public ModelAndView updateModuleById(@ModelAttribute("module") Module module, BindingResult bindingResult) {
 		module.setIsActive(1);
-		boolean saved = moduleService.saveOrUpdateModule(module);
+		Project project = module.getProject();
+		if (project != null && project.getId() > 0) {
+			project = this.projectMap.get(project.getId());
+		}
+		List<Module> modules = project.getModules();
+		if (modules == null || modules.size() == 0) {
+			modules.add(module);
+		}
+		modules.add(module);
+		project.setModules(modules);
+		boolean saved = projectService.saveOrUpdateProject(project);
 		if (saved) {
 			return new ModelAndView("redirect:/module/list");
 		} else {
@@ -64,6 +77,16 @@ public class ModuleController {
 			modelAndView.addObject("module", module);
 			return modelAndView;
 		}
+	}
+
+	@ModelAttribute(name = "projects")
+	public Map<Integer, String> populateProject() {
+		List<Project> projs = new ArrayList<Project>();
+		projs = projectService.listAll();
+		Map<Integer, String> projects = projs.stream()
+				.collect(Collectors.toMap(proj -> proj.getId(), proj -> proj.getProjectName()));
+		this.projectMap = projs.stream().collect(Collectors.toMap(proj -> proj.getId(), proj -> proj));
+		return projects;
 	}
 
 }

@@ -11,5 +11,7 @@ public interface ModuleService {
 	Module getModuleBy(int moduleId);
 
 	boolean saveOrUpdateModule(Module module);
+	
+	Module getById(int moduleId);
 
 }

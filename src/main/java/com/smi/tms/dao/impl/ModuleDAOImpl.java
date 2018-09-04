@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.smi.tms.dao.ModuleDAO;
 import com.smi.tms.model.Module;
+import com.smi.tms.model.Project;
 import com.smi.tms.util.HibernateUtil;
 
 @Component
@@ -41,5 +42,31 @@ public class ModuleDAOImpl implements ModuleDAO {
 	public List<Module> getModulesByProjectId(int projectId) {
 		return (List<Module>) HibernateUtil.getHibernateTemplate().find(
 				"FROM Project where isActive = 1 and project_id=?", projectId);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Module getById(int moduleId) {
+		List<Object[]> objects = (List<Object[]>) HibernateUtil.getHibernateTemplate().find(
+				"SELECT m.id, m.moduleName, m.moduleDesc, p.id from Project p INNER JOIN p.modules m where m.id=?",
+				moduleId);
+		Module module = null;
+		if (objects != null && objects.size() > 0) {
+			for (Object[] object : objects) {
+				int mId = (int) object[0];
+				String mName = (String) object[1];
+				String mDesc = (String) object[2];
+				int pId = (int) object[3];
+				
+				module = new Module();
+				module.setId(mId);
+				module.setModuleName(mName); 
+				module.setModuleDesc(mDesc);
+				Project project = new Project();
+				project.setId(pId);
+				module.setProject(project);
+			}
+		}
+		return module;
 	}
 }

@@ -1,9 +1,15 @@
 package com.smi.tms.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,6 +31,12 @@ public class Project extends BaseModel{
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name="end_date")
 	private Date endDate;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinTable(name = "project_module", joinColumns = {
+			@JoinColumn(name = "project_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "module_id", nullable = false, updatable = false) })
+	private List<Module> modules;
 	
 	public String getProjectName() {
 		return projectName;
@@ -56,6 +68,14 @@ public class Project extends BaseModel{
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public List<Module> getModules() {
+		return modules;
+	}
+
+	public void setModules(List<Module> modules) {
+		this.modules = modules;
 	}
 	
 	
