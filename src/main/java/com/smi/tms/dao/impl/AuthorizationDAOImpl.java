@@ -29,7 +29,7 @@ public class AuthorizationDAOImpl implements AuthorizationDAO{
 		authList.forEach( x -> {
 			hibernateTemplate.saveOrUpdate(x);
 		});
-		
+		System.out.println();
 		
 	}
 

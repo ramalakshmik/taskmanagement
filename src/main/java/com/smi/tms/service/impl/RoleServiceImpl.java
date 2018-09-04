@@ -23,6 +23,7 @@ public class RoleServiceImpl implements RoleService{
 	RoleDAO roleDao;
 	
 	@Override
+	@Transactional(readOnly=true)
 	public Map<Role,List<Authorization>> getRole() {
 		Map<Role,List<Authorization>> roleAuthMap = new HashMap<Role,List<Authorization>>();
 		List<Role> roleList = roleDao.getRole();
@@ -31,7 +32,7 @@ public class RoleServiceImpl implements RoleService{
 				roleAuthMap.put(role, role.getAuthorizationList());
 			}
 		}
-		System.out.println(new Gson().toJson(roleAuthMap));
+		System.out.println(roleAuthMap);
 		return roleAuthMap;
 	}
 

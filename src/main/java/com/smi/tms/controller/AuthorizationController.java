@@ -36,7 +36,6 @@ public class AuthorizationController {
 	AuthorizationService authService;
 	
 	@RequestMapping(value="/list")
-	@Transactional(readOnly=true)
 	public ModelAndView showAuthorization() {
 		Map<Role, List<Authorization>> roleAuthMap = roleService.getRole();
 		ModelAndView modelView =new ModelAndView("roleMenu");
@@ -56,17 +55,6 @@ public class AuthorizationController {
 	
 	@RequestMapping(value="/edit",method=RequestMethod.POST)
 	public ModelAndView saveAllAuth(@ModelAttribute("roleDto") RoleDto roleDto) {
-		
-		System.out.println(">>> "+ new Gson().toJson(roleDto));
-		
-		for(Role role :roleDto.getRoleList()){
-			
-			
-			
-			/*for(String menu:role.getMenuList()){
-				
-			}*/
-		}
 		
 		/*Role role = roleService.getRoleById(roleId);*/
 		
@@ -96,16 +84,7 @@ public class AuthorizationController {
 	
 	@RequestMapping(value="/save",method=RequestMethod.POST)
 	public ModelAndView saveRole(@ModelAttribute("role")Role role) {
-		
-		/*Role existingRole = roleService.getRoleById(role.getId());*/
-		
-		/*List<Authorization> authList = authService.getAuthorizationByRoleId(role.getId());*/
-		
-		authService.deleteAuthByRoleId(role.getId());
 		authService.updateAuthList(role.getId(),role.getMenuList());
-		
-		
-		
 		ModelAndView modelView =new ModelAndView("redirect:list");
 		return modelView;
 		

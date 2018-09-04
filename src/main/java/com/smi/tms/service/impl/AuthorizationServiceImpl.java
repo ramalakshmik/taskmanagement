@@ -34,7 +34,6 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 	}
 
 	@Override
-	@Transactional
 	public void deleteAuthByRoleId(Integer roleId) {
 		List<Authorization> authorizationList = authorizationDAO.getAuthorizationByRoleId(roleId);
 		
@@ -44,8 +43,11 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(rollbackFor=Throwable.class)
 	public void updateAuthList(Integer roleId,List<String> updatedMenu) {
+		
+		//Mark is_Active=0 for previous rows
+		deleteAuthByRoleId(roleId);
 		
 		List<Authorization> updateAuthorizationList=new ArrayList<Authorization>();
 		
