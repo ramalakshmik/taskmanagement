@@ -28,7 +28,7 @@ public class LoginDAOImpl implements LoginDAO {
 
 	public User getUser(String userName, String password) {
 
-		User user = new User();
+		User user = null;
 
 		List<?> list = HibernateUtil.getHibernateTemplate().find("FROM User WHERE userName=? and password=?", userName,
 				password);

@@ -49,7 +49,7 @@
 				<td><form:input type="text" path="actualEndDate" autocomplete="off"/></td>
 			</tr>
 			<tr>
-				<td>PostPonded End Date :</td>
+				<td>Postponed End Date :</td>
 				<td><form:input type="text" path="postponedEndDate" autocomplete="off"/></td>
 			</tr>
 			<!--  <tr>

@@ -26,17 +26,17 @@ import com.smi.tms.util.Constants;
 import com.smi.tms.util.TMSCommonUtil;
 
 @Controller
-public class EmployeeController extends BaseController{
+public class EmployeeController extends BaseController {
 
 	@Autowired
 	EmployeeService employeeService;
 
 	@Autowired
 	ProjectService projectService;
-	
+
 	@Autowired
 	ModuleService moduleService;
-	
+
 	@Autowired
 	AuthorizationService autherizationService;
 
@@ -47,21 +47,22 @@ public class EmployeeController extends BaseController{
 		String role = TMSCommonUtil.getRoleName();
 		User user = TMSCommonUtil.getUser();
 		int empId = user.getEmployee().getId();
-		
-		//Get Authorization by role id
-		if(TMSCommonUtil.getRole() !=null) {
-			Integer roleId = TMSCommonUtil.getRole().getId() ;
-			menuList = autherizationService.getAuthorizationByRoleId(roleId );
+
+		// Get Authorization by role id
+		if (TMSCommonUtil.getRole() != null) {
+			Integer roleId = TMSCommonUtil.getRole().getId();
+			menuList = autherizationService.getAuthorizationByRoleId(roleId);
 			request.getSession().setAttribute("menuList", menuList);
 		}
-		
-		
-		if (role != null && role.equalsIgnoreCase(Constants.PROJECT_MANAGER)) {
+
+		if (role != null
+				&& (role.equalsIgnoreCase(Constants.PROJECT_MANAGER) || role
+						.equalsIgnoreCase(Constants.ADMIN))) {
 			List<Employee> employeeList = employeeService
 					.getEmployeeListByReportingToId(empId);
 			ModelAndView modelAndView = new ModelAndView("adminView");
 			modelAndView.addObject("employeeList", employeeList);
-			modelAndView.addObject("authorizationList",menuList);
+			modelAndView.addObject("authorizationList", menuList);
 			return modelAndView;
 		} else {
 			List<Task> taskList = employeeService.getTaskListByEmpId(empId);
@@ -69,7 +70,7 @@ public class EmployeeController extends BaseController{
 			ModelAndView modelAndView = new ModelAndView("userView", "command",
 					task);
 			modelAndView.addObject("taskList", taskList);
-			modelAndView.addObject("authorizationList",menuList);
+			modelAndView.addObject("authorizationList", menuList);
 			return modelAndView;
 		}
 
@@ -79,7 +80,7 @@ public class EmployeeController extends BaseController{
 	public ModelAndView addEmployee() {
 		Employee employee = new Employee();
 		ModelAndView modelAndView = new ModelAndView("addEmployee", "command",
-				employee); 	
+				employee);
 		return modelAndView;
 	}
 
@@ -113,5 +114,5 @@ public class EmployeeController extends BaseController{
 		}
 
 	}
-	
+
 }
