@@ -33,4 +33,11 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectDAO.saveOrUpdateProject(project);
 	}
 
+	@Override
+	@Transactional
+	public boolean deleteProjectById(Project project) {
+		project.setIsActive(0);
+		return projectDAO.saveOrUpdateProject(project);
+	}
+
 }

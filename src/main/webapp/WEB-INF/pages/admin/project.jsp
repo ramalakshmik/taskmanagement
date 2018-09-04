@@ -19,9 +19,11 @@ tr:nth-child(even) {
 }
 </style>
 <c:url var="projectUrl" value="/project" />
+<c:url var="projectDeleteUrl" value="/project/delete" />
+
 <div>
 	<table style="width: 80%" align="center">
-		<tr >
+		<tr>
 			<td colspan="7">
 				<div class="fright whiteTxt" id="addEmp">
 					<a class="" href="addProject">Add Project</a>
@@ -29,12 +31,12 @@ tr:nth-child(even) {
 			</td>
 		</tr>
 
-		<tr style="background-color:#0c5978;color:white;">
+		<tr style="background-color: #0c5978; color: white;">
 			<th>Project Name</th>
 			<th>Start Date</th>
 			<th>End Date</th>
 			<th>Description</th>
-			<th>Action</th>
+			<th colspan="2">Action</th>
 		</tr>
 		<c:forEach var="project" items="${projectList}">
 			<tr>
@@ -44,8 +46,13 @@ tr:nth-child(even) {
 				<td><fmt:formatDate value="${project.endDate}"
 						pattern="${pattern}" /></td>
 				<td>${project.projectDesc}</td>
-				<td class="tAlignCenter"><a style="color:white;text-align:center;padding:3px;border-radius:4px;font-size:15px;cursor:pointer;text-decoration:none;" 
-						class="tbl-btn-edit" href="${projectUrl}/${project.id}">Edit</a></td>
+				<td class="tAlignCenter"><a
+					style="color: white; text-align: center; padding: 3px; border-radius: 4px; font-size: 15px; cursor: pointer; text-decoration: none;"
+					class="tbl-btn-edit" href="${projectUrl}/${project.id}">Edit</a></td>
+				<td class="tAlignCenter"><a id="deletelink"
+					style="color: white; text-align: center; padding: 3px; border-radius: 4px; font-size: 15px; cursor: pointer; text-decoration: none;"
+					class="tbl-btn-edit" href="${projectDeleteUrl}/${project.id}">Delete</a></td>
+
 			</tr>
 		</c:forEach>
 	</table>

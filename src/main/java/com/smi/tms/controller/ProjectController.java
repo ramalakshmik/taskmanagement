@@ -61,4 +61,15 @@ public class ProjectController {
 		}
 	}
 
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public ModelAndView deleteProjectById(@PathVariable("id") Integer projectId) {
+		Project project = projectService.getProjectById(projectId);
+		projectService.deleteProjectById(project);
+		ModelAndView modelAndView = new ModelAndView("project");
+		List<Project> projects = projectService.listAll();
+		modelAndView.addObject("projectList", projects);
+		modelAndView.addObject("displayMsg", "The record has been deleted");
+		return modelAndView;
+	}
+
 }

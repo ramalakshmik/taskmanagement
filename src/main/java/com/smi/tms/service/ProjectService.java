@@ -12,4 +12,6 @@ public interface ProjectService {
 
 	boolean saveOrUpdateProject(Project project);
 
+	boolean deleteProjectById(Project project);
+
 }
