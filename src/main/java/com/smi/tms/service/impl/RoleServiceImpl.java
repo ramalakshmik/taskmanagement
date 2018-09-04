@@ -1,15 +1,16 @@
 package com.smi.tms.service.impl;
 
-import java.util.HashMap;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;import java.util.stream.Collector;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.google.gson.Gson;
 import com.smi.tms.dao.RoleDAO;
 import com.smi.tms.model.Authorization;
 import com.smi.tms.model.Role;
@@ -25,7 +26,10 @@ public class RoleServiceImpl implements RoleService{
 	@Override
 	@Transactional(readOnly=true)
 	public Map<Role,List<Authorization>> getRole() {
-		Map<Role,List<Authorization>> roleAuthMap = new HashMap<Role,List<Authorization>>();
+		
+		//Sorting based on sort order
+		Map<Role,List<Authorization>> roleAuthMap = new TreeMap<Role,List<Authorization>>((Comparator<Role>) (o1, o2) -> o1.getSortOrder() - o2.getSortOrder());
+		
 		List<Role> roleList = roleDao.getRole();
 		if(roleList!= null && roleList.size()>0) {
 			for(Role role:roleList) {
@@ -33,6 +37,7 @@ public class RoleServiceImpl implements RoleService{
 			}
 		}
 		System.out.println(roleAuthMap);
+
 		return roleAuthMap;
 	}
 

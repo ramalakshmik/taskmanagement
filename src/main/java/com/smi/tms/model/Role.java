@@ -26,6 +26,9 @@ public class Role extends BaseModel{
 	@Where(clause="is_active=1")
 	private List<Authorization> authorizationList;
 	
+	@Column(name = "sort_order")
+	private Integer sortOrder;
+	
 	@Transient
 	private List<String> menuList;
 	
@@ -62,5 +65,12 @@ public class Role extends BaseModel{
 		this.menuList = menuList;
 	}
 
+	public Integer getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(Integer sortOrder) {
+		this.sortOrder = sortOrder;
+	}
 
 }
