@@ -38,7 +38,7 @@
 }
 
 </style>
-
+<c:url var="logoutUrl" value="/logout" />
 <div class="header"
 	style="display: flex; flex-direction: row; justify-content: space-between;">
 	<img class="" style="float: left; width: 18%" alt="Logo"
@@ -47,7 +47,7 @@
 	<nav>
 		<p>
 			<div id="logout">
-				<a class="tbl-btn-edit" href="logout">Logout</a>
+				<a class="tbl-btn-edit" href="${logoutUrl}">Logout</a>
 			</div>
 		</p>
 	</nav>
