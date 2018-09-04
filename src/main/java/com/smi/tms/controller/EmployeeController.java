@@ -1,7 +1,10 @@
 package com.smi.tms.controller;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +25,7 @@ import com.smi.tms.service.EmployeeService;
 import com.smi.tms.service.ModuleService;
 import com.smi.tms.service.ProjectService;
 import com.smi.tms.service.AuthorizationService;
+import com.smi.tms.util.AddressType;
 import com.smi.tms.util.Constants;
 import com.smi.tms.util.TMSCommonUtil;
 
@@ -77,10 +81,19 @@ public class EmployeeController extends BaseController {
 	}
 
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
-	public ModelAndView addEmployee() {
-		Employee employee = new Employee();
+	public ModelAndView addEmployee(@ModelAttribute("employee") Employee employee,BindingResult result) {
+		//Employee employee = new Employee();
 		ModelAndView modelAndView = new ModelAndView("addEmployee", "command",
 				employee);
+		List<Employee> reportingtolist = employeeService.getreportingToList();
+		Map<Integer, String> reportingMap = reportingtolist.stream().collect(Collectors.toMap(emp->emp.getId(),
+				emp->emp.getFirstName().concat(" ").concat(emp.getLastName())));
+		
+		Map<Integer, String> statusMap = Arrays.stream(AddressType.values())
+				.collect(Collectors.toMap(addrType -> addrType.ordinal(), addrType -> addrType.getAddrType()));
+
+		modelAndView.addObject("reportingtolist", reportingMap);
+		modelAndView.addObject("addresstypelist", statusMap);
 		return modelAndView;
 	}
 

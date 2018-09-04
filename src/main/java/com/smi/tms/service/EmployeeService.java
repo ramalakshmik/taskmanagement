@@ -3,7 +3,9 @@ package com.smi.tms.service;
 import java.util.List;
 
 import com.smi.tms.model.Employee;
+import com.smi.tms.model.Role;
 import com.smi.tms.model.Task;
+import com.smi.tms.model.User;
 
 public interface EmployeeService {
 
@@ -14,5 +16,7 @@ public interface EmployeeService {
 	boolean addEmployee(Employee employee);
 	
 	Task getLastAssignedTaskBy(Integer empId);
+	
+	List<Employee> getreportingToList();
 
 }

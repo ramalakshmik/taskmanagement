@@ -1,17 +1,18 @@
 package com.smi.tms.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Address")
+@Table(name="address")
 public class Address extends BaseModel{
 	
-	@Id
+	/*@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
@@ -21,7 +22,8 @@ public class Address extends BaseModel{
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
+	} */
+	
 	@Column(name="address_type")
 	private String addressType;
 	
@@ -39,6 +41,9 @@ public class Address extends BaseModel{
 	
 	@Column(name="zipcode")
 	private long zipcode;
+	
+
+	
 	
 	public String getAddressType() {
 		return addressType;

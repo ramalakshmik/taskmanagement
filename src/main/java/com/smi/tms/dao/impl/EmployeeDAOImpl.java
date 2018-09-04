@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 
 import com.smi.tms.dao.EmployeeDAO;
 import com.smi.tms.model.Employee;
+import com.smi.tms.model.Role;
 import com.smi.tms.model.Task;
+import com.smi.tms.model.User;
 import com.smi.tms.util.HibernateUtil;
 
 @Component
@@ -29,8 +31,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		 * employee.getTaskList().size()!=0) { return employee.getTaskList(); }
 		 * return null;
 		 */
+		
+		/* List<?> taskList = HibernateUtil.getHibernateTemplate().findByNamedParam("FROM Task WHERE assigned_to=:id", "id", id); 
+		    return (List<Task>) taskList;*/
+		
 		return (List<Task>) HibernateUtil.getHibernateTemplate().find(
-				"FROM Task WHERE assigned_to=?", id);
+				"FROM Task WHERE assigned_to= ?",id); 
 	}
 
 	public boolean addEmployee(Employee employee) {
@@ -56,6 +62,14 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public Task getLastAssignedTaskBy(Integer empId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Employee> getreportingToList() {
+		return (List<Employee>) HibernateUtil.getHibernateTemplate().find(
+				"select e FROM User u inner join u.employee e inner join"
+				+ " u.role r WHERE r.id=1");
 	}
 
 }

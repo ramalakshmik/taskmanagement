@@ -2,6 +2,7 @@ package com.smi.tms.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,6 +17,9 @@ import javax.persistence.Table;
 @Table(name = "employee")
 public class Employee extends BaseModel {
 
+	/*@Column(name = "address_id")
+	private long address_id;*/
+	
 	@Column(name = "first_name")
 	private String firstName;
 
@@ -41,6 +45,17 @@ public class Employee extends BaseModel {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "employee_project", joinColumns = { @JoinColumn(name = "emp_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "project_id", nullable = false, updatable = false) })
 	private List<Project> projects;
+	
+	/*@OneToMany(mappedBy="employee", cascade = CascadeType.ALL)
+	private List<Address> address;*/
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id")
+	private Address address;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "assigned_to")
+	private List<Task> taskList;
 
 	public List<Project> getProjects() {
 		return projects;
@@ -58,13 +73,6 @@ public class Employee extends BaseModel {
 		this.reportingTo = reportingTo;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "address_id")
-	private List<Address> address;
-
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "assigned_to")
-	private List<Task> taskList;
 
 	public List<Task> getTaskList() {
 		return taskList;
@@ -122,12 +130,16 @@ public class Employee extends BaseModel {
 		this.emailAddress = emailAddress;
 	}
 
-	public List<Address> getAddress() {
+	
+
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(List<Address> address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
+
+	
 
 }

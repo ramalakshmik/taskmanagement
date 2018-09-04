@@ -7,7 +7,7 @@
 	<div id="container_demo">
 		<div id="wrapper">
 			<div id="login" class="animate form">
-				<form:form id="addemployee" method="post" action="addEmployee">
+				<form:form id="addemployee" method="post" action="addEmployee" modelAttribute="employee">
 					<table style="width: 80%" align="center">
 						<thead>
 						<tr>
@@ -39,6 +39,10 @@
 									name="department" /></td>
 						</tr>
 						<tr>
+							<td><label for="reportingTo">Reporting To:</label></td>
+							<td><form:select path="id" items="${reportingtolist}" /></td>
+						</tr>
+						<tr>
 							<td><label for="email">EmailAddress:</label></td>
 							<td><form:input id="emailAddress" path="emailAddress"
 									name="emailAddress" /></td>
@@ -48,6 +52,46 @@
 							<td><form:input id="phone" path="phone"
 									name="phone" /></td>
 						</tr>
+						 <tr>
+							<td><label for="address">Address:</label></td>
+							<td></td>
+						</tr>
+						
+						<tr>
+							<td><label for="address.addressLineone">Addr Line 1:</label></td>
+							<td>
+								<form:input id="addressLineone" path="address.addressLineone"
+									name="addressLineone" />
+							</td>
+						</tr>
+						<tr>
+							<td><label for="address.addressLineTwo">Addr Line 2:</label></td>
+							<td>
+								<form:input id="addressLineTwo" path="address.addressLineTwo"
+									name="addressLineTwo" />
+							</td>
+						</tr>
+						<tr>
+							<td><label for="address.city">City:</label></td>
+							<td>
+								<form:input id="city" path="address.city"
+									name="city" />
+							</td>
+						</tr> 
+						<tr>
+							<td><label for="address.state">State:</label></td>
+							<td>
+								<form:input id="state" path="address.state"
+									name="state" />
+							</td>
+						</tr>
+						<tr>
+							<td><label for="address.zipcode">ZipCode:</label></td>
+							<td>
+								<form:input id="zipcode" path="address.zipcode"
+									name="zipcode" />
+							</td>
+						</tr> 
 						</tbody>
 					</table>
 				</form:form>
