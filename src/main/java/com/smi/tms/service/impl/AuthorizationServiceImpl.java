@@ -54,13 +54,35 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 			if(auth!=null) {
 				auth.setIsActive(1);
 				auth.setUpdatedOn(new Date());
-				//auth.setUpdatedBy(TMSCommonUtil.getUser().getUserName());
-				updateAuthorizationList.add(auth);
+				auth.setRoleId(roleId);
 			}
+			else {
+				auth = new Authorization();
+				auth.setIsActive(1);
+				auth.setUpdatedOn(new Date());
+				auth.setRoleId(roleId);
+				auth.setMenu(menu);
+				auth.setMethod("GET");
+				
+				if(menu.equals(TMSCommonUtil.EMPLOYEE)) {
+					auth.setActions(TMSCommonUtil.EMPLOYEE_ACTIONS);
+					auth.setSortOrder(TMSCommonUtil.EMPLOYEE_ORDER);
+				}
+				else if(menu.equals(TMSCommonUtil.PROJECT)) {
+					auth.setActions(TMSCommonUtil.PROJECT_ACTIONS);
+					auth.setSortOrder(TMSCommonUtil.PROJECT_ORDER);
+				}
+				else if(menu.equals(TMSCommonUtil.MODULE)) {
+					auth.setActions(TMSCommonUtil.MODULE_ACTIONS);
+					auth.setSortOrder(TMSCommonUtil.MODULE_ORDER);
+				}
+				else if(menu.equals(TMSCommonUtil.ROLE)) {
+					auth.setActions(TMSCommonUtil.ROLE_ACTIONS);
+					auth.setSortOrder(TMSCommonUtil.ROLE_ORDER);
+				}
+			}
+			updateAuthorizationList.add(auth);
 		}
-		
-		System.out.println("updateAuthorizationList >> "+new Gson().toJson(updateAuthorizationList));
-		
 		authorizationDAO.addAuthorizationList(updateAuthorizationList);
 		
 	}

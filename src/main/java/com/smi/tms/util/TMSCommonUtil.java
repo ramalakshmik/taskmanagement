@@ -19,6 +19,23 @@ public class TMSCommonUtil {
 			return false;
 		return pat.matcher(email).matches();
 	}
+	
+	public static final String EMPLOYEE = "EMPLOYEE";
+	public static final String PROJECT = "PROJECT";
+	public static final String MODULE= "MODULE";
+	public static final String ROLE = "ROLE";
+	
+	public static final String EMPLOYEE_ACTIONS = "/employeelist";
+	public static final String PROJECT_ACTIONS = "/project/list";
+	public static final String MODULE_ACTIONS = "/module/list";
+	public static final String ROLE_ACTIONS = "/authorization/list";
+	
+	public static final Integer EMPLOYEE_ORDER = 1;
+	public static final Integer PROJECT_ORDER = 2;
+	public static final Integer MODULE_ORDER = 3;
+	public static final Integer ROLE_ORDER = 4;
+	
+	
 
 	public static boolean isPhoneNumberValid(String number) {
 		// The given argument to compile() method
@@ -63,5 +80,7 @@ public class TMSCommonUtil {
 		User user = (User) session.getAttribute("user");
 		return user;
 	}
+	
+	
 
 }

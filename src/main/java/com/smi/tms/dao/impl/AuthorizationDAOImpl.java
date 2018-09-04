@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.smi.tms.dao.AuthorizationDAO;
 import com.smi.tms.model.Authorization;
@@ -21,6 +22,7 @@ public class AuthorizationDAOImpl implements AuthorizationDAO{
 	}
 
 	@Override
+	@Transactional
 	public void addAuthorizationList(List<Authorization> authList) {
 		HibernateTemplate hibernateTemplate = HibernateUtil.getHibernateTemplate();
 		
@@ -35,7 +37,7 @@ public class AuthorizationDAOImpl implements AuthorizationDAO{
 	public Authorization getAuthByMenuName(Integer roleId,String menu) {
 		List<Authorization> list=new ArrayList<>();
 		HibernateTemplate hibernateTemplate = HibernateUtil.getHibernateTemplate();
-		list = (List<Authorization>) hibernateTemplate.find("FROM Authorization where menu=? Order by createdOn desc ", menu);
+		list = (List<Authorization>) hibernateTemplate.find("FROM Authorization where roleId=? and menu=? Order by createdOn desc ",roleId, menu);
 		if(list != null && list.size()>0) {
 			return list.get(0);
 		}
