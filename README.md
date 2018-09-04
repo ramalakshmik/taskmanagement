@@ -630,4 +630,7 @@ INSERT INTO authorization VALUES(4,1,'ROLE','/authorization/list','GET',3,1,'Sys
 INSERT INTO authorization VALUES(5,2,'EMPLOYEE','/employeelist','GET',1,1,'System',now(),null,null);
 INSERT INTO authorization VALUES(6,2,'PROJECT','/project/list','GET',2,1,'System',now(),null,null);
 
+-- Task -- Added field postponded_end_date
+alter table task add postponded_end_date DATETIME NULL;
+
 
