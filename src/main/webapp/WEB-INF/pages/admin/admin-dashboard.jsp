@@ -43,7 +43,7 @@ tr:nth-child(even) {
 				<td><a
 					style="color: white; text-align: center; padding: 3px; border-radius: 4px; font-size: 15px; cursor: pointer; text-decoration: none;"
 					class="tbl-btn-edit" data-toggle="modal" data-target="#taskModal"
-					href="adminTaskEdit/${emp.id}">Edit</a></td>
+					href="empEdit?empId=${emp.id}">Edit</a></td>
 				<td><a
 					style="color: white; text-align: center; padding: 3px; border-radius: 4px; font-size: 15px; cursor: pointer; text-decoration: none;"
 					class="tbl-btn-assign" href="task/assignTask?empId=${emp.id}">Assign</a></td>

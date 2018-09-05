@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.smi.tms.model.Authorization;
@@ -83,7 +85,7 @@ public class EmployeeController extends BaseController {
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
 	public ModelAndView addEmployee(@ModelAttribute("employee") Employee employee,BindingResult result) {
 		//Employee employee = new Employee();
-		ModelAndView modelAndView = new ModelAndView("addEmployee", "command",
+		ModelAndView modelAndView = new ModelAndView("addEmployee", "employee",
 				employee);
 		List<Employee> reportingtolist = employeeService.getreportingToList();
 		Map<Integer, String> reportingMap = reportingtolist.stream().collect(Collectors.toMap(emp->emp.getId(),
@@ -100,7 +102,7 @@ public class EmployeeController extends BaseController {
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
 	public ModelAndView addEmployee(HttpServletRequest request,
 			HttpServletResponse response,
-			@ModelAttribute("command") Employee employee, BindingResult result) {
+			@ModelAttribute("employee") Employee employee, BindingResult result) {
 		String emailAddress = employee.getEmailAddress();
 
 		boolean emailValid, phoneValid = true;
@@ -110,8 +112,15 @@ public class EmployeeController extends BaseController {
 			User user = (User) request.getSession().getAttribute("user");
 			employee.setReportingTo(user.getEmployee());
 			employee.setIsActive(1);
+			employee.setFirstName(employee.getFirstName());
+			employee.setLastName(employee.getLastName());
+			employee.setDesignation(employee.getDesignation());
+			employee.setDepartment(employee.getDepartment());
+			if(employee.getId() == null || employee.getId() == 0)
+			{
 			employee.setCreatedBy(user.getEmployee().getFirstName());
 			employee.setCreatedOn(new Date());
+			}
 			employeeService.addEmployee(employee);
 			return new ModelAndView("redirect:employeelist");
 		} else {
@@ -127,5 +136,16 @@ public class EmployeeController extends BaseController {
 		}
 
 	}
-
+	@RequestMapping(value = "/empEdit", method = RequestMethod.GET)
+	@Transactional(readOnly = true)
+	public ModelAndView EmployeeById(@RequestParam(value = "empId", required = true) Integer empId) {
+		Employee employee = employeeService.getEmployeeById(empId);
+		ModelAndView modelAndView = new ModelAndView("addEmployee");
+		modelAndView.addObject("employee", employee);
+		List<Employee> reportingtolist = employeeService.getreportingToList();
+		Map<Integer, String> reportingMap = reportingtolist.stream().collect(Collectors.toMap(emp->emp.getId(),
+				emp->emp.getFirstName().concat(" ").concat(emp.getLastName())));
+		modelAndView.addObject("reportingtolist", reportingMap);
+		return modelAndView;
+	}
 }

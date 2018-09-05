@@ -2,6 +2,7 @@ package com.smi.tms.service.impl;
 
 import java.util.List;
 
+import org.hibernate.type.TrueFalseType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Transactional
 	public boolean addEmployee(Employee employee) {
-		return employeeDAO.addEmployee(employee);
+ 		return employeeDAO.addEmployee(employee);
 	}
 
 	@Override
@@ -41,6 +42,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<Employee> getreportingToList() {
 		return employeeDAO.getreportingToList();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Employee getEmployeeById(Integer empId) {
+		// TODO Auto-generated method stub
+		return employeeDAO.getEmployeeById(empId);
 	}
 
 }

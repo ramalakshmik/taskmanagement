@@ -49,7 +49,7 @@ public class Employee extends BaseModel {
 	/*@OneToMany(mappedBy="employee", cascade = CascadeType.ALL)
 	private List<Address> address;*/
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
 	private Address address;
 

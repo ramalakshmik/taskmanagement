@@ -18,4 +18,6 @@ public interface EmployeeDAO {
 	Task getLastAssignedTaskBy(Integer empId);
 	
 	List<Employee> getreportingToList();
+	
+	Employee getEmployeeById(Integer empId);
 }

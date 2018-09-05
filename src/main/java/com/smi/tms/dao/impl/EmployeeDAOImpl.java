@@ -7,9 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.smi.tms.dao.EmployeeDAO;
 import com.smi.tms.model.Employee;
-import com.smi.tms.model.Role;
 import com.smi.tms.model.Task;
-import com.smi.tms.model.User;
 import com.smi.tms.util.HibernateUtil;
 
 @Component
@@ -47,7 +45,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			HibernateTemplate hibernateTemplate = HibernateUtil
 					.getHibernateTemplate();
 			hibernateTemplate.setCheckWriteOperations(false);
-			hibernateTemplate.save(employee);
+			hibernateTemplate.saveOrUpdate(employee);
 			// hibernateTemplate.setCheckWriteOperations(false);
 			// session.saveOrUpdate(employee);
 
@@ -70,6 +68,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return (List<Employee>) HibernateUtil.getHibernateTemplate().find(
 				"select e FROM User u inner join u.employee e inner join"
 				+ " u.role r WHERE r.id=1");
+	}
+
+	@Override
+	public Employee getEmployeeById(Integer empId) {
+		return (Employee) HibernateUtil.getHibernateTemplate().get(Employee.class, empId);
 	}
 
 }
