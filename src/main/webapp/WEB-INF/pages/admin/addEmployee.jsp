@@ -8,6 +8,7 @@
 		<div id="wrapper">
 			<div id="login" class="animate form">
 				<form:form id="addemployee" method="post" action="addEmployee" modelAttribute="employee">
+					<form:input type="hidden" path="id" />
 					<table style="width: 80%" align="center">
 						<thead>
 						<tr>
@@ -40,7 +41,7 @@
 						</tr>
 						<tr>
 							<td><label for="reportingTo">Reporting To:</label></td>
-							<td><form:select path="id" items="${reportingtolist}" /></td>
+							<td><form:select path="reportingTo.id" items="${reportingtolist}" /></td>
 						</tr>
 						<tr>
 							<td><label for="email">EmailAddress:</label></td>
