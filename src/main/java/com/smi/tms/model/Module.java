@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="Module")
+@Table(name="module")
 public class Module extends BaseModel{
 	
 	@Column(name="module_name")

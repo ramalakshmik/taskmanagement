@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="Project")
+@Table(name="project")
 public class Project extends BaseModel{
 
 	@Column(name="project_name")
