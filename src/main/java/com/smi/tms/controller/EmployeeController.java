@@ -84,18 +84,11 @@ public class EmployeeController extends BaseController {
 
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
 	public ModelAndView addEmployee(@ModelAttribute("employee") Employee employee,BindingResult result) {
-		//Employee employee = new Employee();
+		
 		ModelAndView modelAndView = new ModelAndView("addEmployee", "employee",
 				employee);
-		List<Employee> reportingtolist = employeeService.getreportingToList();
-		Map<Integer, String> reportingMap = reportingtolist.stream().collect(Collectors.toMap(emp->emp.getId(),
-				emp->emp.getFirstName().concat(" ").concat(emp.getLastName())));
-		
-		Map<Integer, String> statusMap = Arrays.stream(AddressType.values())
-				.collect(Collectors.toMap(addrType -> addrType.ordinal(), addrType -> addrType.getAddrType()));
-
+		Map<Integer, String> reportingMap = getreportingToList();
 		modelAndView.addObject("reportingtolist", reportingMap);
-		modelAndView.addObject("addresstypelist", statusMap);
 		return modelAndView;
 	}
 
@@ -116,6 +109,7 @@ public class EmployeeController extends BaseController {
 			employee.setLastName(employee.getLastName());
 			employee.setDesignation(employee.getDesignation());
 			employee.setDepartment(employee.getDepartment());
+			employee.getAddress().setIsActive(1);
 			if(employee.getId() == null || employee.getId() == 0)
 			{
 			employee.setCreatedBy(user.getEmployee().getFirstName());
@@ -126,6 +120,8 @@ public class EmployeeController extends BaseController {
 		} else {
 			ModelAndView modelAndView = new ModelAndView("addEmployee",
 					"command", employee);
+			Map<Integer, String> reportingMap = getreportingToList();
+			modelAndView.addObject("reportingtolist", reportingMap);
 			if (!emailValid)
 				modelAndView.addObject("validationMsg",
 						"Email Address is not valid");
@@ -147,5 +143,14 @@ public class EmployeeController extends BaseController {
 				emp->emp.getFirstName().concat(" ").concat(emp.getLastName())));
 		modelAndView.addObject("reportingtolist", reportingMap);
 		return modelAndView;
+	}
+	
+	public Map<Integer, String> getreportingToList(){
+		
+		List<Employee> reportingtolist = employeeService.getreportingToList();
+		Map<Integer, String> reportingMap = reportingtolist.stream().collect(Collectors.toMap(emp->emp.getId(),
+				emp->emp.getFirstName().concat(" ").concat(emp.getLastName())));
+		return reportingMap;
+		
 	}
 }
