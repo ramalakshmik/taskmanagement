@@ -53,7 +53,6 @@ public class LoginController {
 			session.setAttribute("user", user);
 			return new ModelAndView("redirect:employeelist");
 		} catch (Exception e) {
-
 			return new ModelAndView("redirect:login");
 		}
 	}

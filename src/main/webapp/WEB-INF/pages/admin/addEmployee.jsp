@@ -4,21 +4,23 @@
 <c:url var="employeeList" value="/employeelist" />
 
 
-	<div id="container_demo">
-		<div id="wrapper">
-			<div id="login" class="animate form">
-				<form:form id="addemployee" method="post" action="addEmployee" modelAttribute="employee">
-					<form:input type="hidden" path="id" />
-					<table style="width: 80%" align="center">
-						<thead>
+<div id="container_demo">
+	<div id="wrapper">
+		<div id="login" class="animate form">
+			<form:form id="addemployee" method="post" action="addEmployee"
+				modelAttribute="employee">
+				<form:input type="hidden" path="id" />
+				<table style="width: 80%" align="center">
+					<thead>
 						<tr>
-							<th colspan="2" align="center" style="color:lightseagreen"><b>ADD NEW EMPLOYEE</b></th>
+							<th colspan="2" align="center" style="color: lightseagreen"><b>ADD
+									NEW EMPLOYEE</b></th>
 						</tr>
 						<tr>
-							<th colspan="2" align="center" style="color:red;">${validationMsg}</th>
+							<th colspan="2" align="center" style="color: red;">${validationMsg}</th>
 						</tr>
-						</thead>
-						<tbody>
+					</thead>
+					<tbody>
 						<tr>
 							<td><label for="firstName">FirstName: </label></td>
 							<td><form:input id="firstName" path="firstName"
@@ -41,16 +43,17 @@
 						</tr>
 						<tr>
 							<td><label for="reportingTo">Reporting To:</label></td>
-							<td><form:select path="reportingTo.id" items="${reportingtolist}" /></td>
+							<td><form:select path="reportingTo.id">
+									<form:option value="" label="--- Select ---" />
+									<form:options items="${reportingtolist}" />
+								</form:select></td>
 						</tr>
 						<tr>
 							<td><label for="role">Role:</label></td>
-							<td>
-								<form:select path="role.id">
-									<form:options name="role" items="${roleList}" 
-										itemValue="id" itemLabel="role" />
-								</form:select>
-							</td>
+							<td><form:select path="role.id">
+									<form:options name="role" items="${roleList}" itemValue="id"
+										itemLabel="role" />
+								</form:select></td>
 						</tr>
 						<tr>
 							<td><label for="email">EmailAddress:</label></td>
@@ -59,61 +62,57 @@
 						</tr>
 						<tr>
 							<td><label for="phone">Phone:</label></td>
-							<td><form:input id="phone" path="phone"
-									name="phone" /></td>
+							<td><form:input id="phone" path="phone" name="phone" /></td>
 						</tr>
-						 <tr>
+						<tr>
 							<td><label for="address">Address:</label></td>
 							<td></td>
 						</tr>
-						
+
 						<tr>
 							<td><label for="address.addressLineone">Addr Line 1:</label></td>
-							<td>
-								<form:input id="addressLineone" path="address.addressLineone"
-									name="addressLineone" />
-							</td>
+							<td><form:input id="addressLineone"
+									path="address.addressLineone" name="addressLineone" /></td>
 						</tr>
 						<tr>
 							<td><label for="address.addressLineTwo">Addr Line 2:</label></td>
-							<td>
-								<form:input id="addressLineTwo" path="address.addressLineTwo"
-									name="addressLineTwo" />
-							</td>
+							<td><form:input id="addressLineTwo"
+									path="address.addressLineTwo" name="addressLineTwo" /></td>
 						</tr>
 						<tr>
 							<td><label for="address.city">City:</label></td>
-							<td>
-								<form:input id="city" path="address.city"
-									name="city" />
+							<td><form:input id="city" path="address.city" name="city" />
 							</td>
-						</tr> 
+						</tr>
 						<tr>
 							<td><label for="address.state">State:</label></td>
-							<td>
-								<form:input id="state" path="address.state"
-									name="state" />
+							<td><form:input id="state" path="address.state" name="state" />
 							</td>
 						</tr>
 						<tr>
 							<td><label for="address.zipcode">ZipCode:</label></td>
-							<td>
-								<form:input id="zipcode" path="address.zipcode"
-									name="zipcode" />
-							</td>
-						</tr> 
-						</tbody>
-					</table>
-				</form:form>
-				<table style="width: 30%" align="center">
-					<thead>
-						 <tr>
-							<th><button style="float:right;color:white;text-align:center;padding:3px;border-radius:4px;font-size:15px;cursor:pointer;" type="submit" class="tbl-btn-assign" form="addemployee" value="Add"><b>Add</b></button></th>
-							<th><a style="float:right;color:white;text-align:center;padding:3px;border-radius:4px;font-size:15px;text-decoration:none;" class="tbl-btn-edit" href="${employeeList}">Cancel</a></th>
-						</tr> 
-					</thead>
+							<td><form:input id="zipcode" path="address.zipcode"
+									name="zipcode" /></td>
+						</tr>
+					</tbody>
 				</table>
-				
-			</div>
+			</form:form>
+			<table style="width: 30%" align="center">
+				<thead>
+					<tr>
+						<th><button
+								style="float: right; color: white; text-align: center; padding: 3px; border-radius: 4px; font-size: 15px; cursor: pointer;"
+								type="submit" class="tbl-btn-assign" form="addemployee"
+								value="Add">
+								<b>Add</b>
+							</button></th>
+						<th><a
+							style="float: right; color: white; text-align: center; padding: 3px; border-radius: 4px; font-size: 15px; text-decoration: none;"
+							class="tbl-btn-edit" href="${employeeList}">Cancel</a></th>
+					</tr>
+				</thead>
+			</table>
+
 		</div>
 	</div>
+</div>

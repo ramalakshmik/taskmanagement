@@ -13,28 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.smi.tms.util.TMSCommonUtil;
+
 @Controller
 public class LogoutController {
 
-	@RequestMapping(value="/logout",method=RequestMethod.GET)
-	public void logout(HttpServletRequest request, HttpServletResponse response)
-	{
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public void logout(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession httpSession = TMSCommonUtil.getSession();
 		httpSession.invalidate();
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		try {
 			rd.forward(request, response);
 		} catch (ServletException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//return "redirect:/tms";
-		
-		/*HttpSession httpSession = request.getSession();
-        httpSession.invalidate();
-        return "redirect:/tms";*/
 	}
 }

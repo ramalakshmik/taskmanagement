@@ -23,25 +23,42 @@ public class ProjectController {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView projectList() {
-		ModelAndView modelAndView = new ModelAndView("project");
-		List<Project> projects = projectService.listAll();
-		modelAndView.addObject("projectList", projects);
+		ModelAndView modelAndView = new ModelAndView();
+		try {
+			modelAndView.setViewName("project");
+			List<Project> projects = projectService.listAll();
+			modelAndView.addObject("projectList", projects);
+
+		} catch (Exception e) {
+			modelAndView.setViewName("error");
+		}
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView projectById(@PathVariable("id") Integer projectId) {
-		Project project = projectService.getProjectById(projectId);
-		ModelAndView modelAndView = new ModelAndView("projectEdit");
-		modelAndView.addObject("project", project);
+		ModelAndView modelAndView = new ModelAndView();
+		try {
+			Project project = projectService.getProjectById(projectId);
+			modelAndView.setViewName("projectEdit");
+			modelAndView.addObject("project", project);
+
+		} catch (Exception e) {
+			modelAndView.setViewName("error");
+		}
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/addProject", method = RequestMethod.GET)
 	public ModelAndView addProject() {
-		Project project = new Project();
-		ModelAndView modelAndView = new ModelAndView("projectEdit", "project",
-				project);
+		ModelAndView modelAndView = new ModelAndView();
+		try {
+			Project project = new Project();
+			modelAndView.setViewName("projectEdit");
+			modelAndView.addObject("project", project);
+		} catch (Exception e) {
+			modelAndView.setViewName("error");
+		}
 		return modelAndView;
 	}
 
@@ -49,26 +66,37 @@ public class ProjectController {
 	public ModelAndView updateProjectById(
 			@ModelAttribute("project") Project project,
 			BindingResult bindingResult) {
-		project.setIsActive(1);
-		boolean saved = projectService.saveOrUpdateProject(project);
-		if (saved) {
-			return new ModelAndView("redirect:/project/list");
-		} else {
-			ModelAndView modelAndView = new ModelAndView("projectEdit");
-			modelAndView.addObject("project", project);
-			modelAndView.addObject("errorMsg", "Please enter valid values");
-			return modelAndView;
+		ModelAndView modelAndView = new ModelAndView();
+		try {
+			project.setIsActive(1);
+			boolean saved = projectService.saveOrUpdateProject(project);
+			if (saved) {
+				modelAndView.setViewName("redirect:/project/list");
+			} else {
+				modelAndView.setViewName("projectEdit");
+				modelAndView.addObject("project", project);
+				modelAndView.addObject("errorMsg", "Please enter valid values");
+			}
+		} catch (Exception e) {
+			modelAndView.setViewName("error");
 		}
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public ModelAndView deleteProjectById(@PathVariable("id") Integer projectId) {
-		Project project = projectService.getProjectById(projectId);
-		projectService.deleteProjectById(project);
-		ModelAndView modelAndView = new ModelAndView("project");
-		List<Project> projects = projectService.listAll();
-		modelAndView.addObject("projectList", projects);
-		modelAndView.addObject("displayMsg", "The record has been deleted");
+		ModelAndView modelAndView = new ModelAndView();
+		try {
+			Project project = projectService.getProjectById(projectId);
+			projectService.deleteProjectById(project);
+			modelAndView.setViewName("project");
+			List<Project> projects = projectService.listAll();
+			modelAndView.addObject("projectList", projects);
+			modelAndView.addObject("displayMsg", "The record has been deleted");
+
+		} catch (Exception e) {
+			modelAndView.setViewName("error");
+		}
 		return modelAndView;
 	}
 

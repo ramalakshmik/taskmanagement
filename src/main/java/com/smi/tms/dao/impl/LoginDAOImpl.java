@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Controller;
 
 import com.smi.tms.dao.LoginDAO;
@@ -17,8 +18,8 @@ public class LoginDAOImpl implements LoginDAO {
 		User user = new User();
 
 		short enabled = 1;
-		List<?> list = HibernateUtil.getHibernateTemplate().find("FROM User WHERE userName=? and isActive=?", userName,
-				enabled);
+		List<?> list = HibernateUtil.getHibernateTemplate().find(
+				"FROM User WHERE userName=? and isActive=?", userName, enabled);
 		if (!list.isEmpty()) {
 			user = (User) list.get(0);
 		}
@@ -30,11 +31,13 @@ public class LoginDAOImpl implements LoginDAO {
 
 		User user = null;
 
-		List<?> list = HibernateUtil.getHibernateTemplate().find("FROM User WHERE userName=? and password=?", userName,
-				password);
-		if (!list.isEmpty()) {
-			user = (User) list.get(0);
-		}
+		Query<User> query = HibernateUtil.getHibernateTemplate()
+				.getSessionFactory().getCurrentSession()
+				.createQuery("select u FROM User u WHERE u.userName=? and u.password=?");
+		query.setParameter(0, userName);
+		query.setParameter(1, password);
+		user = query.uniqueResult();
+
 		return user;
 
 	}
@@ -47,7 +50,8 @@ public class LoginDAOImpl implements LoginDAO {
 			byte[] bytes = md.digest();
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < bytes.length; i++)
-				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16)
+						.substring(1));
 			generatedPassword = sb.toString();
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();

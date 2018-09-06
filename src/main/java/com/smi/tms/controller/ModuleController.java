@@ -33,59 +33,84 @@ public class ModuleController {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView moduleList() {
-		ModelAndView modelAndView = new ModelAndView("module");
-		List<Module> modules = moduleService.listAll();
-		List<Project> projects = projectService.listAll();
-		modelAndView.addObject("projects", projects);
-		modelAndView.addObject("moduleList", modules);
+		ModelAndView modelAndView = new ModelAndView();
+		try {
+			modelAndView.setViewName("module");
+			List<Module> modules = moduleService.listAll();
+			List<Project> projects = projectService.listAll();
+			modelAndView.addObject("projects", projects);
+			modelAndView.addObject("moduleList", modules);
+		} catch (Exception e) {
+			modelAndView.setViewName("error");
+		}
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView moduleById(@PathVariable("id") Integer moduleId) {
-		Module module = moduleService.getById(moduleId);
-		ModelAndView modelAndView = new ModelAndView("moduleEdit");
-		modelAndView.addObject("module", module);
+		ModelAndView modelAndView = new ModelAndView();
+		try {
+			Module module = moduleService.getById(moduleId);
+			modelAndView.setViewName("moduleEdit");
+			modelAndView.addObject("module", module);
+		} catch (Exception e) {
+			modelAndView.setViewName("error");
+		}
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/addModule", method = RequestMethod.GET)
 	public ModelAndView addModule() {
-		Module module = new Module();
-		ModelAndView modelAndView = new ModelAndView("moduleEdit", "module", module);
+		ModelAndView modelAndView = new ModelAndView();
+		try {
+			Module module = new Module();
+			modelAndView.setViewName("moduleEdit");
+			modelAndView.addObject("module", module);
+		} catch (Exception e) {
+			modelAndView.setViewName("error");
+		}
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/addModule", method = RequestMethod.POST)
-	public ModelAndView updateModuleById(@ModelAttribute("module") Module module, BindingResult bindingResult) {
-		module.setIsActive(1);
-		Project project = module.getProject();
-		if (project != null && project.getId() > 0) {
-			project = this.projectMap.get(project.getId());
-		}
-		List<Module> modules = project.getModules();
-		if (modules == null || modules.size() == 0) {
+	public ModelAndView updateModuleById(
+			@ModelAttribute("module") Module module, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView();
+		try {
+			module.setIsActive(1);
+			Project project = module.getProject();
+			if (project != null && project.getId() > 0) {
+				project = this.projectMap.get(project.getId());
+			}
+			List<Module> modules = project.getModules();
+			if (modules == null || modules.size() == 0) {
+				modules.add(module);
+			}
 			modules.add(module);
+			project.setModules(modules);
+			boolean saved = projectService.saveOrUpdateProject(project);
+			if (saved) {
+				modelAndView.setViewName("redirect:/module/list");
+			} else {
+				modelAndView.setViewName("moduleEdit");
+				modelAndView.addObject("module", module);
+
+			}
+		} catch (Exception e) {
+			modelAndView.setViewName("error");
 		}
-		modules.add(module);
-		project.setModules(modules);
-		boolean saved = projectService.saveOrUpdateProject(project);
-		if (saved) {
-			return new ModelAndView("redirect:/module/list");
-		} else {
-			ModelAndView modelAndView = new ModelAndView("moduleEdit");
-			modelAndView.addObject("module", module);
-			return modelAndView;
-		}
+		return modelAndView;
 	}
 
 	@ModelAttribute(name = "projects")
 	public Map<Integer, String> populateProject() {
 		List<Project> projs = new ArrayList<Project>();
 		projs = projectService.listAll();
-		Map<Integer, String> projects = projs.stream()
-				.collect(Collectors.toMap(proj -> proj.getId(), proj -> proj.getProjectName()));
-		this.projectMap = projs.stream().collect(Collectors.toMap(proj -> proj.getId(), proj -> proj));
+		Map<Integer, String> projects = projs.stream().collect(
+				Collectors.toMap(proj -> proj.getId(),
+						proj -> proj.getProjectName()));
+		this.projectMap = projs.stream().collect(
+				Collectors.toMap(proj -> proj.getId(), proj -> proj));
 		return projects;
 	}
 
