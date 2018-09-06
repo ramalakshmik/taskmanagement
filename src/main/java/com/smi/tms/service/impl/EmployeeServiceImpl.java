@@ -44,6 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		User user = TMSCommonUtil.getUser();
 		employee.setReportingTo(user.getEmployee());
 		employee.setIsActive(1);
+		employee.getAddress().setIsActive(1);
 		employee.setCreatedBy(user.getEmployee().getFirstName());
 		employee.setCreatedOn(new Date());
 		
