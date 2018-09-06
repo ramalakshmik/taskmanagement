@@ -34,6 +34,7 @@ public class TMSCommonUtil {
 	public static final Integer PROJECT_ORDER = 2;
 	public static final Integer MODULE_ORDER = 3;
 	public static final Integer ROLE_ORDER = 4;
+	public static final String DEFAULT_PASSWORD = "smi@123";
 	
 	
 

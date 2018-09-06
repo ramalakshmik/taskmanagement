@@ -13,4 +13,6 @@ public interface RoleService {
 	List<Role> getAllRole();
 	
 	Role getRoleById(Integer roleId);
+	
+	Role getRoleByEmpId(Integer empId);
 }

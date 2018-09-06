@@ -1,7 +1,6 @@
 package com.smi.tms.controller;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -21,12 +20,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.smi.tms.model.Authorization;
 import com.smi.tms.model.Employee;
+import com.smi.tms.model.Role;
 import com.smi.tms.model.Task;
 import com.smi.tms.model.User;
+import com.smi.tms.service.AuthorizationService;
 import com.smi.tms.service.EmployeeService;
 import com.smi.tms.service.ModuleService;
 import com.smi.tms.service.ProjectService;
-import com.smi.tms.service.AuthorizationService;
+import com.smi.tms.service.RoleService;
 import com.smi.tms.util.AddressType;
 import com.smi.tms.util.Constants;
 import com.smi.tms.util.TMSCommonUtil;
@@ -45,6 +46,9 @@ public class EmployeeController extends BaseController {
 
 	@Autowired
 	AuthorizationService autherizationService;
+	
+	@Autowired
+	RoleService roleService;
 
 	@RequestMapping(value = "/employeelist", method = RequestMethod.GET)
 	public ModelAndView showForm(HttpServletRequest request,
@@ -93,7 +97,7 @@ public class EmployeeController extends BaseController {
 		
 		Map<Integer, String> statusMap = Arrays.stream(AddressType.values())
 				.collect(Collectors.toMap(addrType -> addrType.ordinal(), addrType -> addrType.getAddrType()));
-
+		
 		modelAndView.addObject("reportingtolist", reportingMap);
 		modelAndView.addObject("addresstypelist", statusMap);
 		return modelAndView;
@@ -107,20 +111,8 @@ public class EmployeeController extends BaseController {
 
 		boolean emailValid, phoneValid = true;
 		emailValid = TMSCommonUtil.isEmailValid(emailAddress);
-		phoneValid = TMSCommonUtil.isPhoneNumberValid(employee.getPhone());
-		if (emailValid && phoneValid) {
-			User user = (User) request.getSession().getAttribute("user");
-			employee.setReportingTo(user.getEmployee());
-			employee.setIsActive(1);
-			employee.setFirstName(employee.getFirstName());
-			employee.setLastName(employee.getLastName());
-			employee.setDesignation(employee.getDesignation());
-			employee.setDepartment(employee.getDepartment());
-			if(employee.getId() == null || employee.getId() == 0)
-			{
-			employee.setCreatedBy(user.getEmployee().getFirstName());
-			employee.setCreatedOn(new Date());
-			}
+		//phoneValid = TMSCommonUtil.isPhoneNumberValid(employee.getPhone());
+		if (emailValid) {
 			employeeService.addEmployee(employee);
 			return new ModelAndView("redirect:employeelist");
 		} else {
@@ -140,6 +132,7 @@ public class EmployeeController extends BaseController {
 	@Transactional(readOnly = true)
 	public ModelAndView EmployeeById(@RequestParam(value = "empId", required = true) Integer empId) {
 		Employee employee = employeeService.getEmployeeById(empId);
+		
 		ModelAndView modelAndView = new ModelAndView("addEmployee");
 		modelAndView.addObject("employee", employee);
 		List<Employee> reportingtolist = employeeService.getreportingToList();
@@ -147,5 +140,11 @@ public class EmployeeController extends BaseController {
 				emp->emp.getFirstName().concat(" ").concat(emp.getLastName())));
 		modelAndView.addObject("reportingtolist", reportingMap);
 		return modelAndView;
+	}
+	
+	@ModelAttribute(name="roleList")
+	public List<Role> roleList() {
+		List<Role> roleList = roleService.getAllRole();
+		return roleList;
 	}
 }

@@ -26,7 +26,7 @@ public class User extends BaseModel {
 	@Column(name = "password")
 	private String password;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name = "emp_id")
 	private Employee employee;
 
@@ -38,7 +38,7 @@ public class User extends BaseModel {
 		this.employee = employee;
 	}
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "role_id", nullable = false, updatable = false) })
 	private List<Role> role;
 

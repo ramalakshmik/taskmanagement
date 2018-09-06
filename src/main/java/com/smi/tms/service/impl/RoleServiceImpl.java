@@ -51,10 +51,6 @@ public class RoleServiceImpl implements RoleService{
 	@Override
 	public List<Role> getAllRole() {
 		List<Role> roleList = roleDao.getRole();
-		
-		for(Role role:roleList)
-			setMenuDropdown(role);
-		
 		return roleList;
 	}
 	
@@ -68,6 +64,11 @@ public class RoleServiceImpl implements RoleService{
 		List<String> menuString = authorizationList.stream().map(x -> x.getMenu().toUpperCase()).collect(Collectors.toList());
 		role.setMenuList(menuString);
 		return role;
+	}
+
+	@Override
+	public Role getRoleByEmpId(Integer empId) {
+		return roleDao.getRoleByEmployee(empId);
 	}
 
 }

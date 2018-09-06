@@ -9,4 +9,6 @@ public interface RoleDAO {
 	public List<Role> getRole();
 	
 	public List<Role> getRoleById(Integer roleId);
+	
+	public Role getRoleByEmployee(Integer empId);
 }

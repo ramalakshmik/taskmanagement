@@ -28,4 +28,11 @@ public class UserDAOImpl implements UserDAO {
 				"FROM Task WHERE assigned_to = ?", empId);
 	}
 
+	@Override
+	public void saveUser(User empUser) {
+		HibernateUtil.getHibernateTemplate().saveOrUpdate(empUser);
+	}
+	
+
+
 }

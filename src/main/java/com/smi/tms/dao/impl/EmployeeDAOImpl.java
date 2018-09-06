@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 import com.smi.tms.dao.EmployeeDAO;
 import com.smi.tms.model.Employee;
 import com.smi.tms.model.Task;
+import com.smi.tms.util.Constants;
 import com.smi.tms.util.HibernateUtil;
+import com.smi.tms.util.TMSCommonUtil;
 
 @Component
 public class EmployeeDAOImpl implements EmployeeDAO {
@@ -67,7 +69,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public List<Employee> getreportingToList() {
 		return (List<Employee>) HibernateUtil.getHibernateTemplate().find(
 				"select e FROM User u inner join u.employee e inner join"
-				+ " u.role r WHERE r.id=1");
+				+ " u.role r WHERE r.role=?",Constants.PROJECT_MANAGER);
 	}
 
 	@Override

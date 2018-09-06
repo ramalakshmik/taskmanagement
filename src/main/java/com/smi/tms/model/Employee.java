@@ -7,11 +7,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "employee")
@@ -42,9 +41,9 @@ public class Employee extends BaseModel {
 	@JoinColumn(name = "reporting_to")
 	private Employee reportingTo;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	/*@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "employee_project", joinColumns = { @JoinColumn(name = "emp_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "project_id", nullable = false, updatable = false) })
-	private List<Project> projects;
+	private List<Project> projects;*/
 	
 	/*@OneToMany(mappedBy="employee", cascade = CascadeType.ALL)
 	private List<Address> address;*/
@@ -56,14 +55,17 @@ public class Employee extends BaseModel {
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "assigned_to")
 	private List<Task> taskList;
+	
+	@Transient
+	private Role role;
 
-	public List<Project> getProjects() {
+	/*public List<Project> getProjects() {
 		return projects;
 	}
 
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
-	}
+	}*/
 
 	public Employee getReportingTo() {
 		return reportingTo;
@@ -130,8 +132,6 @@ public class Employee extends BaseModel {
 		this.emailAddress = emailAddress;
 	}
 
-	
-
 	public Address getAddress() {
 		return address;
 	}
@@ -140,6 +140,13 @@ public class Employee extends BaseModel {
 		this.address = address;
 	}
 
-	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 
 }

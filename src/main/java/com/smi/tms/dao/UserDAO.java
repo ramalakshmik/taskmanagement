@@ -11,4 +11,6 @@ public interface UserDAO {
 	List<User> getUsersById(int empId);
 
 	List<Task> getTasksById(int empId);
+
+	void saveUser(User user);
 }
