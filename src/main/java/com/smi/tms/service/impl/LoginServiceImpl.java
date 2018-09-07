@@ -30,4 +30,11 @@ public class LoginServiceImpl implements LoginService {
 		return loginDAO.encodePassword(passwordToHash);
 	}
 
+	@Override
+	public void updatePassword(User user) {
+		loginDAO.saveUser(user);
+	}
+
+
+
 }

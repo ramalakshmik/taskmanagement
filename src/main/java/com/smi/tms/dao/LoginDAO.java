@@ -8,6 +8,8 @@ public interface LoginDAO {
 	User getUser(String userName, String password);
 	
 	String encodePassword(String passwordToHash);
+
+	void saveUser(User user);
 	
 	
 }

@@ -39,12 +39,14 @@
 
 </style>
 <c:url var="logoutUrl" value="/logout" />
+<c:url var="changePass" value="/change-password" />
 <div class="header"
 	style="display: flex; flex-direction: row; justify-content: space-between;">
 	<img class="" style="float: left; width: 18%" alt="Logo"
 		src="${ctx}/images/logo.png">
 	<h2 style="color:#0c5978;">Task Management System</h2>
 	<nav>
+		<a href="${changePass}" style="color:#007bff">Change Password</a>
 		<p>
 			<div id="logout">
 				<a class="tbl-btn-edit" href="${logoutUrl}">Logout</a>

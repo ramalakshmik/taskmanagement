@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.smi.tms.dao.LoginDAO;
 import com.smi.tms.model.User;
@@ -57,5 +58,11 @@ public class LoginDAOImpl implements LoginDAO {
 			e.printStackTrace();
 		}
 		return generatedPassword;
+	}
+
+	@Override
+	@Transactional
+	public void saveUser(User user) {
+		HibernateUtil.getHibernateTemplate().saveOrUpdate(user);
 	}
 }

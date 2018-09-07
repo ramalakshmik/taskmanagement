@@ -63,5 +63,10 @@
 	<definition name="roleMenuEdit" extends="DefaultTemplate">
 	    <put-attribute name="body" value="/WEB-INF/pages/admin/roleMenuEdit.jsp" />
 	</definition>
+	
+	<definition name="changePassword" extends="DefaultTemplate">
+	    <put-attribute name="menu" value="" />
+	    <put-attribute name="body" value="/WEB-INF/pages/password-change.jsp" />
+	</definition>
 
 </tiles-definitions>

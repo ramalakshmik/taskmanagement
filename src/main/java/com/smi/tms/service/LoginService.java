@@ -6,4 +6,5 @@ public interface LoginService {
 	User getActiveUser(String userName);
 	User getUser(String userName, String password);
 	String encodePassword(String passwordToHash);
+	void updatePassword(User user);
 }

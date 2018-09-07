@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "user")
@@ -29,6 +30,9 @@ public class User extends BaseModel {
 	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name = "emp_id")
 	private Employee employee;
+	
+	@Transient
+	private String oldPassword;
 
 	public Employee getEmployee() {
 		return employee;
@@ -64,6 +68,14 @@ public class User extends BaseModel {
 
 	public void setRole(List<Role> role) {
 		this.role = role;
+	}
+
+	public String getOldPassword() {
+		return oldPassword;
+	}
+
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
 	}
 
 }
