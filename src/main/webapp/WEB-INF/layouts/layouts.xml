@@ -7,6 +7,7 @@
       template="/WEB-INF/template/base-layout.jsp">
 			<put-attribute name="header" value="/WEB-INF/template/header.jsp" />
 			<put-attribute name="menu" value="/WEB-INF/pages/admin/admin-menu.jsp" />
+			<put-attribute name="error" value="/WEB-INF/pages/error.jsp" />
 			<put-attribute name="body" value="" />
 			<!-- <put-attribute name="footer" value="/WEB-INF/template/footer.jsp" /> -->
 	</definition>
@@ -67,6 +68,11 @@
 	<definition name="changePassword" extends="DefaultTemplate">
 	    <put-attribute name="menu" value="" />
 	    <put-attribute name="body" value="/WEB-INF/pages/password-change.jsp" />
+	</definition>
+	
+	<definition name="error" extends="DefaultTemplate">
+		<put-attribute name="menu" value="" />
+	    <put-attribute name="body" value="/WEB-INF/pages/error.jsp" />
 	</definition>
 
 </tiles-definitions>
