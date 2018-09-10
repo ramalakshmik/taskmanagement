@@ -95,7 +95,10 @@ public class EmployeeController extends BaseController {
 	public ModelAndView addEmployee(
 			@ModelAttribute("employee") Employee employee, BindingResult result) {
 		ModelAndView modelAndView = new ModelAndView();
-
+		/*
+		 * try { throw new Exception(); } catch (Exception e1) {
+		 * modelAndView.setViewName("error"); return modelAndView; }
+		 */
 		try {
 			modelAndView.setViewName("addEmployee");
 			modelAndView.addObject("employee", employee);
@@ -115,10 +118,15 @@ public class EmployeeController extends BaseController {
 		ModelAndView modelAndView = new ModelAndView();
 		try {
 			String emailAddress = employee.getEmailAddress();
-
+			boolean emailExists = false;
 			boolean emailValid, phoneValid = true;
 			emailValid = TMSCommonUtil.isEmailValid(emailAddress);
 			if (emailValid) {
+				emailExists = employeeService.emailExists(emailAddress,
+						employee.getId());
+			}
+
+			if (emailValid && !emailExists) {
 				employeeService.addEmployee(employee);
 				modelAndView.setViewName("redirect:employeelist");
 			} else {
@@ -129,9 +137,9 @@ public class EmployeeController extends BaseController {
 				if (!emailValid)
 					modelAndView.addObject("validationMsg",
 							"Email Address is not valid");
-				if (!phoneValid)
+				if (emailExists)
 					modelAndView.addObject("validationMsg",
-							"Phone Number is not valid");
+							"Email Address already Exists");
 			}
 		} catch (Exception e) {
 			modelAndView.setViewName("error");

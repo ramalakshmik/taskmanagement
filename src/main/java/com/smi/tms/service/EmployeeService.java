@@ -20,5 +20,7 @@ public interface EmployeeService {
 	List<Employee> getreportingToList();
 
 	Employee getEmployeeById(Integer empId);
+	
+	boolean emailExists(String emailId, Integer empId);
 
 }

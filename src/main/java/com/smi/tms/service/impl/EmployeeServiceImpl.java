@@ -97,4 +97,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employee;
 	}
 
+	@Override
+	@Transactional
+	public boolean emailExists(String emailId, Integer empId) {
+		return employeeDAO.emailExists(emailId, empId);
+	}
+
 }
